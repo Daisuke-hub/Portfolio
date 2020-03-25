@@ -1,3 +1,40 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="row">
+    <div class="col-xs-5">
+        <%= search_form_for @q do |f| %>
+            <div class="title">楽器</div>
+            <%= f.select :instrument_eq, ["ギター","ベース","ドラム","ボーカル","キーボード","その他"], class:"form_control" %>
+            <%# <div class="title">ジャンル</div> %>
+            <%#= f.collection_select :genre_cont, Genre.all, :id, :genre_name %>
+            <div class="title">性別</div>
+            <%= f.select :sex_eq, ["男性","女性","非公開","その他"], class:"form_control" %>
+            <div class="title">年齢</div>
+            <p><%= f.number_field :age_gteq %>以上〜</p>
+            <%= f.number_field :age_lt %>未満
+            <div class="title">活動地域</div>
+            <%= f.grouped_collection_select(:region_eq, Region.all, :prefectures, :region_name, :id, :prefecture_name) %>
+            <div class="title">自己評価点</div>
+            <%= f.select :level_eq, [["1 (初心者)","1"],["2 (簡単な曲なら弾ける)","2"],["3 (簡単な曲なら耳コピができる)","3"],["4 (簡単なセッションができる)","4"],["5 (セッションができる)","5"]], class:"form_control" %>
+            <div class="title">キーワード</div>
+            <p><%= f.text_field :introduction_cont %></p>
+            <%= f.submit "検索" %>
+        <% end %>
+    </div>
 
+    <div class="col-xs-7" >
+    <table class="table table-hover">
+        <% @users.each do |user|%>
+            <tr>
+                <td class="col-xs-1">
+                    <%= link_to user_path(user) do %>
+                        <%= attachment_image_tag(user, :user_image, :fill, 70, 70, fallback: "no_image.jpg") %>
+                    <% end %>
+                </td>
+                <td>
+                    <div><%= user.name %></div>
+                    <%= user.introduction %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+    </div>
+</div>

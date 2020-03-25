@@ -1,10 +1,12 @@
 <h1>Chat Room</h1>
 <input type="text", class="chat-input">
 <button class="button">送信</button>
-<div class="messages">
-    <ol>
-        <% @messages.each do |message| %>
-                <%= render "message", message: message %>
-        <% end %>
-    </ol>
+<div>
+    <ul id="message">
+    <% @messages.each do |message| %>
+        <li id="balloon">
+            <%= message.content %>
+        </li>
+    <% end %>
+    </ul>
 </div>

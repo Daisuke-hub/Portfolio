@@ -33,14 +33,14 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       t.string :name, null: false
-      t.string :sex, null: false, index: true
-      t.string :age, null: false, index: true
-      t.string :instrument, null: false, index: true
-      t.string :region, null: false, index: true
-      t.text :introduction, null: false, index: true
+      t.string :sex, index: true
+      t.string :age, index: true
+      t.string :instrument, index: true
+      t.string :region, index: true
+      t.text :introduction, index: true
       t.string :user_image_id
-      t.integer :level, null: false, index: true
-      t.boolean :chat_flag, null: false, default: "true"
+      t.integer :level, index: true
+      t.boolean :chat_flag, default: "true"
 
       t.timestamps null: false
     end

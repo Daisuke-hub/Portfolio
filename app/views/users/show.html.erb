@@ -1,2 +1,54 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="row">
+    <div class="col-xs-4">
+        <%= attachment_image_tag(@user, :user_image, :fill, 200, 200, fallback: "no_image.jpg") %>
+    </div>
+    <div class="col-xs-8">
+        <table class="table">
+            <tr>
+            <th class="show">ニックネーム</th>
+            <td><%= @user.name %></td>
+            </tr>
+
+            <tr>
+            <th>性別</th>
+            <td><%= @user.sex %></td>
+            </tr>
+
+            <tr>
+            <th>年齢</th>
+            <td><%= @user.age %></td>
+            </tr>
+
+            <tr>
+            <th>担当楽器</th>
+            <td><%= @user.instrument %></td>
+            </tr>
+
+            <tr>
+            <th>地域</th>
+            <td><%= @user.region %></td>
+            </tr>
+
+            <tr>
+            <th>自己評価</th>
+            <td><%= @user.level %></td>
+            </tr>
+
+            <tr>
+            <th>自己紹介</th>
+            <td><%= @user.introduction %></td>
+            </tr>
+        </table>
+        <% if @user.chat_flag == true %>
+        <%= link_to "チャットしてみる", room_index_path, class:"btn btn-primary btn-md" %>
+        <% else %>
+        <%= link_to "チャット不可", user_path(@user) %>
+        <% end %>
+
+        <% if @user == current_user %>
+            <%= link_to "編集する", edit_user_path, class:"btn btn-primary btn-md" %>
+        <% end %>
+    </div>
+</div>
+
+
