@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_152251) do
+ActiveRecord::Schema.define(version: 2020_03_25_182624) do
 
   create_table "genre_relationships", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -30,6 +30,24 @@ ActiveRecord::Schema.define(version: 2020_03_23_152251) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+  end
+
+  create_table "prefectures", force: :cascade do |t|
+    t.string "prefecture_name", null: false
+    t.integer "region_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prefecture_name"], name: "index_prefectures_on_prefecture_name"
+    t.index ["region_id"], name: "index_prefectures_on_region_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "region_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["region_name"], name: "index_regions_on_region_name"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -46,14 +64,14 @@ ActiveRecord::Schema.define(version: 2020_03_23_152251) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.string "sex", null: false
-    t.string "age", null: false
-    t.string "instrument", null: false
-    t.string "region", null: false
-    t.text "introduction", null: false
+    t.string "sex"
+    t.string "age"
+    t.string "instrument"
+    t.string "region"
+    t.text "introduction"
     t.string "user_image_id"
-    t.integer "level", null: false
-    t.boolean "chat_flag", default: true, null: false
+    t.integer "level"
+    t.boolean "chat_flag", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["age"], name: "index_users_on_age"

@@ -1,2 +1,63 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="row">
+  <%= form_for(@user) do |f| %>
+      <div class="col-xs-4">
+        <div class="image">
+          <%= attachment_image_tag(@user, :user_image, :fill, 200, 200, fallback: "no_image.jpg") %>
+        </div>
+        <div class="result"></div>
+        <div class="file">
+          <%= f.attachment_field :user_image %>
+        </div>
+    </div>
+    <div class="col-xs-8">
+        <table class="table">
+
+    <div class="title">ニックネーム</div>
+    <div class="field">
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="title">性別</div>
+    <div class="field">
+      <%= f.select :sex, ["男性","女性","非公開","その他"], class:"form_control" %>
+    </div>
+
+    <div class="title">年齢</div>
+    <div class="field">
+      <%= f.number_field :age %>
+    </div>
+
+    <div class="title">担当楽器</div>
+    <div class="field">
+      <%= f.select :instrument, [["ギター","ギター"],["ベース","ベース"],["ドラム","ドラム"],["ボーカル","ボーカル"],["キーボード","キーボード"],["その他","その他"]], class:"form_control" %>
+    </div>
+
+    <div class="title">自己評価点</div>
+    <div class="field">
+      <%= f.select :level, [["1 (初心者)","1"],["2 (簡単な曲なら弾ける)","2"],["3 (簡単な曲なら耳コピができる)","3"],["4 (簡単なセッションができる)","4"],["5 (セッションができる)","5"]], class:"form_control" %>
+    </div>
+
+    <div class="title">活動地域</div>
+    <div class="field">
+      <%= f.grouped_collection_select(:region, Region.all, :prefectures, :region_name, :prefecture_name, :prefecture_name) %>
+    </div>
+
+    <div class="title">自己紹介</div>
+    <div class="field">
+      <%= f.text_area :introduction %>
+    </div>
+
+    <div class="title">チャット可否</div>
+    <div class="field">
+      <%= f.select :chat_flag, [["チャット可能","true"],["チャット不可","false"]], class:"form_control" %>
+    </div>
+
+    <div class="field">
+    <div class="title">メールアドレス</div>
+      <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <%= f.submit "更新する", class:"btn btn-primary btn-md"%>
+  <% end %>
+  <%= link_to "退会する", user_registration_path, method: :delete, data: {confirm:"退会しますか？"}, class:"btn btn-danger btn-md" %>
+</div>

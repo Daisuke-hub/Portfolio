@@ -9,8 +9,9 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   },
 
   received: function(data) {
-    // $("tbody").append("<%= render partial: "room/message", locals: {message: message} %>");
-    $("ol").append(data);
+    $('<li>',{
+      text: data
+    }).appendTo("#message");
     // Called when there's incoming data on the websocket for this channel
   },
 
