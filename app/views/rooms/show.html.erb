@@ -1,0 +1,9 @@
+<div class="row">
+    <h1>Chat Room</h1>
+    <input type="text", class="chat-input">
+    <button class="button">送信</button>
+
+    <%= render 'message' %>
+
+    <input type="hidden" id="room_id" value="<%= @room_id %>">
+</div>

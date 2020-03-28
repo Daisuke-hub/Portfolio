@@ -10,54 +10,74 @@
         </div>
     </div>
     <div class="col-xs-8">
-        <table class="table">
+      <table class="table">
 
-    <div class="title">ニックネーム</div>
-    <div class="field">
-      <%= f.text_field :name %>
-    </div>
+        <tr>
+          <th class="title">ニックネーム</th>
+          <td class="field">
+            <%= f.text_field :name %>
+          </td>
+        </tr>
 
-    <div class="title">性別</div>
-    <div class="field">
-      <%= f.select :sex, ["男性","女性","非公開","その他"], class:"form_control" %>
-    </div>
+        <tr>
+          <th class="title">性別</th>
+          <td class="field">
+            <%= f.select :sex, ["男性","女性","非公開","その他"], class:"form_control" %>
+          </td>
+        </tr>
 
-    <div class="title">年齢</div>
-    <div class="field">
-      <%= f.number_field :age %>
-    </div>
+        <tr>
+          <th class="title">年齢</th>
+          <td class="field">
+            <%= f.number_field :age %>
+          </td>
+        </tr>
 
-    <div class="title">担当楽器</div>
-    <div class="field">
-      <%= f.select :instrument, [["ギター","ギター"],["ベース","ベース"],["ドラム","ドラム"],["ボーカル","ボーカル"],["キーボード","キーボード"],["その他","その他"]], class:"form_control" %>
-    </div>
+        <tr>
+          <th class="title">担当楽器</th>
+          <td class="field">
+            <%= f.select :instrument, [["ギター","ギター"],["ベース","ベース"],["ドラム","ドラム"],["ボーカル","ボーカル"],["キーボード","キーボード"],["その他","その他"]], class:"form_control" %>
+          </td>
+        </tr>
 
-    <div class="title">自己評価点</div>
-    <div class="field">
-      <%= f.select :level, [["1 (初心者)","1"],["2 (簡単な曲なら弾ける)","2"],["3 (簡単な曲なら耳コピができる)","3"],["4 (簡単なセッションができる)","4"],["5 (セッションができる)","5"]], class:"form_control" %>
-    </div>
+        <tr>
+          <th class="title">自己評価点</th>
+          <td class="field">
+            <%= f.select :level, [["1 (初心者)","1"],["2 (簡単な曲なら弾ける)","2"],["3 (簡単な曲なら耳コピができる)","3"],["4 (簡単なセッションができる)","4"],["5 (セッションができる)","5"]], class:"form_control" %>
+          </td>
+        </tr>
 
-    <div class="title">活動地域</div>
-    <div class="field">
-      <%= f.grouped_collection_select(:region, Region.all, :prefectures, :region_name, :prefecture_name, :prefecture_name) %>
-    </div>
+        <tr>
+          <th class="title">活動地域</th>
+          <td class="field">
+            <%= f.grouped_collection_select(:region, Region.all, :prefectures, :region_name, :prefecture_name, :prefecture_name) %>
+          </td>
+        </tr>
 
-    <div class="title">自己紹介</div>
-    <div class="field">
-      <%= f.text_area :introduction %>
-    </div>
+        <tr>
+          <th class="title">自己紹介</th>
+          <td class="field">
+            <%= f.text_area :introduction %>
+          </td>
+        </tr>
 
-    <div class="title">チャット可否</div>
-    <div class="field">
-      <%= f.select :chat_flag, [["チャット可能","true"],["チャット不可","false"]], class:"form_control" %>
-    </div>
+        <tr>
+          <th class="title">チャット可否</th>
+          <td class="field">
+            <%= f.select :chat_flag, [["チャット可能","true"],["チャット不可","false"]], class:"form_control" %>
+          </td>
+        </tr>
 
-    <div class="field">
-    <div class="title">メールアドレス</div>
-      <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+        <tr>
+          <th class="title">メールアドレス</th>
+          <td class="field">
+            <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+          </td>
+        </tr>
+      </table>
 
-    <%= f.submit "更新する", class:"btn btn-primary btn-md"%>
+      <%= f.submit "更新する", class:"btn btn-primary btn-md"%>
+      <%= link_to "退会する", user_registration_path, method: :delete, data: {confirm:"退会しますか？"}, class:"btn btn-danger btn-md" %>
+    <div>
   <% end %>
-  <%= link_to "退会する", user_registration_path, method: :delete, data: {confirm:"退会しますか？"}, class:"btn btn-danger btn-md" %>
 </div>

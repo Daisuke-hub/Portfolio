@@ -40,9 +40,9 @@
             </tr>
         </table>
         <% if @user.chat_flag == true %>
-        <%= link_to "チャットしてみる", room_index_path, class:"btn btn-primary btn-md" %>
+            <%= link_to "チャットしてみる", room_path(@user), method: :post, class:"btn btn-primary btn-md" %>
         <% else %>
-        <%= link_to "チャット不可", user_path(@user) %>
+            <div class="btn btn-warning btn-md">チャット不可</div>
         <% end %>
 
         <% if @user == current_user %>
