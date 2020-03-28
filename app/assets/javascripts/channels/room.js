@@ -9,21 +9,20 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   },
 
   received: function(data) {
-    $('<li>',{
-      text: data
-    }).appendTo("#message");
+    location.reload();
     // Called when there's incoming data on the websocket for this channel
   },
 
-  speak: function(content) {
-    return this.perform('speak', {message: content});
+  speak: function(content, room_id) {
+    return this.perform('speak', {message: content, room_id: room_id});
   }
 });
 
 $(function(){
   $(".button").on("click",function(){
     var content = $(".chat-input").val();
-    App.room.speak(content);
+    var room_id = $("#room_id").val();
+    App.room.speak(content, room_id);
     $(".chat-input").val("")
   });
 });

@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   attachment :user_image
-  has_many :genre_relationship, dependent: :destroy
-  has_many :message, dependent: :destroy
+  has_many :genre_relationships, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
 end

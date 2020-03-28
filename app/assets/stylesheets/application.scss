@@ -28,8 +28,8 @@
 
  .current_user{
      text-align: left;
-     margin-bottom: 20px;
      background-color: navy;
+     margin-bottom: 20px;
      color: lightgray;
  }
 
@@ -69,11 +69,21 @@ input{
 }
 
 #balloon{
-    list-style: none;
     border-radius: 10px;
-    width: 200px;
-    margin-top: 20px;
-    padding: 5px;
+    padding: 5px 20px;
+    font-size: 15px;
     background-color: lightyellow;
 }
 
+.message{
+    list-style: none;
+    margin: 5px 0;
+}
+
+.receive_message{
+    margin-left: 200px;
+}
+
+.image{
+    border-radius: 10px;
+}
