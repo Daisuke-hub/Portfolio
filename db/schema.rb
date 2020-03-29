@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_181301) do
     t.string "age"
     t.string "instrument"
     t.string "region"
-    t.text "introduction"
+    t.string "introduction"
     t.string "user_image_id"
     t.integer "level"
     t.boolean "chat_flag", default: true
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_181301) do
     t.index ["age"], name: "index_users_on_age"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["instrument"], name: "index_users_on_instrument"
+    t.index ["introduction"], name: "index_users_on_introduction"
     t.index ["level"], name: "index_users_on_level"
     t.index ["region"], name: "index_users_on_region"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
