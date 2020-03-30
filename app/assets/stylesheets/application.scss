@@ -80,6 +80,10 @@ input{
     margin: 5px 0;
 }
 
+ul{
+    padding: 0;
+}
+
 .receive_message{
     margin-left: 200px;
 }
@@ -114,4 +118,8 @@ input{
     display: block;
     text-align: center;
     color: darkslategrey;
+}
+
+.time{
+    font-size: 5px;
 }
