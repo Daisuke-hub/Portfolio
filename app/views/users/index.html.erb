@@ -11,13 +11,60 @@
             <p><%= f.number_field :age_gteq %>以上〜</p>
             <%= f.number_field :age_lt %>未満
             <div class="title">活動地域</div>
-            <%= f.grouped_collection_select(:region_eq, Region.all, :prefectures, :region_name, :id, :prefecture_name) %>
+            <%= f.grouped_collection_select(:region_eq, Region.all, :prefectures, :region_name, :prefecture_name, :prefecture_name) %>
             <div class="title">自己評価点</div>
             <%= f.select :level_eq, [["1 (初心者)","1"],["2 (簡単な曲なら弾ける)","2"],["3 (簡単な曲なら耳コピができる)","3"],["4 (簡単なセッションができる)","4"],["5 (セッションができる)","5"]], class:"form_control" %>
             <div class="title">キーワード</div>
             <p><%= f.text_field :introduction_cont %></p>
             <%= f.submit "検索" %>
         <% end %>
+
+        <div class="row">
+            <div class="col-xs-10">
+                <span>本日の投稿</span>
+                <table class="table table-hover">
+                    <% @rooms.each do |room| %>
+                        <% break if @count == 3 %>
+                        <% if message = room.messages.order(created_at: :desc).first %>
+                            <% if message.created_at.to_date == Date.today %>
+                            <% @count += 1 %>
+                                <tr>
+                                    <% if room.host_id == current_user.id %>
+                                        <% user = User.where(id: room.member_id).first %>
+                                    <% else %>
+                                        <% user = User.where(id: room.host_id).first %>
+                                    <% end %>
+                                    <td>
+                                        <%= link_to room_path(room) do %>
+                                            <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
+                                        <% end %>
+                                    </td>
+                                    <td>
+                                        <%= link_to room_path(room) do %>
+                                            <%= user.name %>
+                                        <% end %>
+                                    <td>
+                                    <td>
+                                        <div class="time"><%= message.created_at %></div>
+                                        <div id="balloon"><%= message.content.truncate(5) %></div>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                </table>
+                <%= link_to rooms_path, class:"btn btn-primary" do %>
+                    <% @rooms.each do |room| %>
+                        <% if message = room.messages.order(created_at: :desc).first %>
+                            <% if message.created_at.to_date == Date.today %>
+                                <% @count_all += 1 %>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                    本日の投稿全<%= @count_all %>件を表示する
+                <% end %>
+            </div>
+        </div>
     </div>
 
     <div class="col-xs-7" >
@@ -30,20 +77,23 @@
                         <% end %>
                     </td>
                     <td>
-                        <div><%= user.name %></div>
-                        <%= user.introduction %>
+                        <%= link_to user_path(user) do %>
+                            <div><%= user.name %></div>
+                            <%= user.introduction %>
+                        <% end %>
                     </td>
                 </tr>
             <% end %>
         </table>
+
         <div class="page_count">
             <% if @users.count == 0 %>0 〜
             <% else %>
-                <%= @users.current_page * 7 - 6 %>〜
+                <%= @users.current_page * @per - @per + 1 %>〜
             <% end %>
-            <%= @users.current_page * 7 - 7 + @users.count %>件目を表示 / 全
+            <%= @users.current_page * @per - @per + @users.count %>件目を表示 / 全
             <%= @users_all.count %>件
         </div>
-    <%= paginate @users %>
+        <%= paginate @users %>
     </div>
 </div>

@@ -17,12 +17,14 @@ class RoomsController < ApplicationController
 
   def show
     room = Room.find(params[:id])
-    # messages = room.messages
-    # @sent_messages = messages.where(user_id: current_user)
-    # @receive_messages = messages.where.not(user_id: current_user)
-    # receive_message = messages.where.not(user_id: current_user).first
-    # @receive_user = receive_message.user
     @room_id = params[:id].to_i
     @messages = room.messages
   end
+
+  def index
+    @per = 8.to_i
+    @rooms_all = Room.where("(host_id = ?) OR (member_id = ?)", current_user,current_user)
+    @rooms = @rooms_all.page(params[:page]).per(@per)
+  end
+
 end
