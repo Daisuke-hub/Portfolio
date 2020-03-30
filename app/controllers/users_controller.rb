@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+    @users_all = @q.result(distinct: true)
+    @users = @users_all.page(params[:page]).per(7)
+    rooms = Room.where("(host_id = ?) OR (member_id = ?", current_user,current_user)
+    @rooms = rooms.page(params[:page]).per(4)
   end
 
   def show

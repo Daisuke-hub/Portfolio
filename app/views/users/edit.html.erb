@@ -2,7 +2,7 @@
   <%= form_for(@user) do |f| %>
       <div class="col-xs-4">
         <div class="image">
-          <%= attachment_image_tag(@user, :user_image, :fill, 200, 200, fallback: "no_image.jpg") %>
+          <%= attachment_image_tag(@user, :user_image, :fill, 200, 200, fallback: "no_image.jpg", size: "200x200") %>
         </div>
         <div class="result"></div>
         <div class="file">
