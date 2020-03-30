@@ -21,20 +21,29 @@
     </div>
 
     <div class="col-xs-7" >
-    <table class="table table-hover">
-        <% @users.each do |user|%>
-            <tr>
-                <td class="col-xs-1">
-                    <%= link_to user_path(user) do %>
-                        <%= attachment_image_tag(user, :user_image, :fill, 70, 70, fallback: "no_image.jpg") %>
-                    <% end %>
-                </td>
-                <td>
-                    <div><%= user.name %></div>
-                    <%= user.introduction %>
-                </td>
-            </tr>
-        <% end %>
-    </table>
+        <table class="table table-hover">
+            <% @users.each do |user|%>
+                <tr>
+                    <td class="col-xs-1">
+                        <%= link_to user_path(user) do %>
+                            <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <div><%= user.name %></div>
+                        <%= user.introduction %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+        <div class="page_count">
+            <% if @users.count == 0 %>0 〜
+            <% else %>
+                <%= @users.current_page * 7 - 6 %>〜
+            <% end %>
+            <%= @users.current_page * 7 - 7 + @users.count %>件目を表示 / 全
+            <%= @users_all.count %>件
+        </div>
+    <%= paginate @users %>
     </div>
 </div>
