@@ -1,14 +1,16 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-// $(function(){
-//     $(".file").change(function(){
-//         $("image"),remove();
-//         var file = $(this).prop("file")
-//         var fileReader = new FileReader();
-//         fileReader.onloadend = function(){
-//             $("result").html("<img src"'+fileReader.result +'"/>");
-//         }
-//         fileReader.readAsDataURL(file);
-//     });
-// });
+$(function(){
+    $("#user_user_image").change(function(){
+        console.log("test")
+        $(".attachment").remove();
+        var selectedFile = this.files[0];
+        var fileReader = new FileReader();
+        fileReader.onloadend = function(event){
+            var loadedImageUri = event.target.result
+            $("#result").html('<img src="' + loadedImageUri + '"id=preview >' );
+        }
+        fileReader.readAsDataURL(selectedFile);
+    });
+});
