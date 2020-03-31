@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_181301) do
     t.string "age"
     t.string "instrument"
     t.string "region"
-    t.text "introduction", limit: 255
+    t.text "introduction"
     t.string "user_image_id"
     t.integer "level"
     t.boolean "chat_flag", default: true

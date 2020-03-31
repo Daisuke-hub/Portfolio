@@ -10,6 +10,12 @@ class RoomChannel < ApplicationCable::Channel
   def speak(data)
     message = Message.new(content: data["message"], user_id: current_user.id, room_id: data["room_id"])
     message.save
-    ActionCable.server.broadcast "room_channel", data["message"]
+    # ActionCable.server.broadcast "room_channel", user_id: current_user.id, content: data["message"]
+    ActionCable.server.broadcast "room_channel", messages: Message.all
+    messages.each do |message|
+      contents += message.content
+    end
+    
   end
+
 end
