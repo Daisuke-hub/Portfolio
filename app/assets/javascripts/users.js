@@ -3,7 +3,6 @@
 
 $(function(){
     $("#user_user_image").change(function(){
-        console.log("test")
         $(".attachment").remove();
         var selectedFile = this.files[0];
         var fileReader = new FileReader();

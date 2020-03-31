@@ -9,7 +9,15 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   },
 
   received: function(data) {
-    location.reload();
+    // location.reload();
+    console.log("received");
+    console.log(data);
+    console.log(data["content"]);
+    $('#sc').render(data).appendTo("#br")
+    // $('<li>',{
+    //   id: "balloon",
+    //   text: data["content"],
+    // }).appendTo("#message");
     // Called when there's incoming data on the websocket for this channel
   },
 

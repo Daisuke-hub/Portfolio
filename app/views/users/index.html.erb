@@ -22,12 +22,12 @@
         <div class="row">
             <div class="col-xs-10">
                 <span>最近の投稿</span>
-                <table class="table table-hover">
-                    <% @rooms.each do |room| %>
-                        <% break if @count == 3 %>
-                        <% if message = room.messages.order(created_at: :desc).first %>
-                            <%# if message.created_at.to_date == Date.today %>
-                            <% @count += 1 %>
+                <div id="iframe">
+                    <table class="table table-hover">
+                        <% @rooms.each do |room| %>
+                            <% break if @count == 3 %>
+                            <% if message = room.messages.order(created_at: :desc).first %>
+                                <% @count += 1 %>
                                 <tr>
                                     <% if room.host_id == current_user.id %>
                                         <% user = User.where(id: room.member_id).first %>
@@ -49,10 +49,10 @@
                                         <div id="balloon"><%= message.content.truncate(5) %></div>
                                     </td>
                                 </tr>
-                            <%# end %>
+                            <% end %>
                         <% end %>
-                    <% end %>
-                </table>
+                    </table>
+                </div>
                 <%= link_to rooms_path, class:"btn btn-primary" do %>
                     本日は<%= @count_all %>件の投稿があります
                 <% end %>
