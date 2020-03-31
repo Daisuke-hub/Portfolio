@@ -37,7 +37,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :age, index: true
       t.string :instrument, index: true
       t.string :region, index: true
-      t.text :introduction, index: true
+      t.text :introduction, index: false
       t.string :user_image_id
       t.integer :level, index: true
       t.boolean :chat_flag, default: "true"
