@@ -21,12 +21,12 @@
 
         <div class="row">
             <div class="col-xs-10">
-                <span>本日の投稿</span>
+                <span>最近の投稿</span>
                 <table class="table table-hover">
                     <% @rooms.each do |room| %>
                         <% break if @count == 3 %>
                         <% if message = room.messages.order(created_at: :desc).first %>
-                            <% if message.created_at.to_date == Date.today %>
+                            <%# if message.created_at.to_date == Date.today %>
                             <% @count += 1 %>
                                 <tr>
                                     <% if room.host_id == current_user.id %>
@@ -45,23 +45,16 @@
                                         <% end %>
                                     <td>
                                     <td>
-                                        <div class="time"><%= message.created_at %></div>
+                                        <div class="time"><%= message.created_at.strftime('%m/%d %H:%M') %></div>
                                         <div id="balloon"><%= message.content.truncate(5) %></div>
                                     </td>
                                 </tr>
-                            <% end %>
+                            <%# end %>
                         <% end %>
                     <% end %>
                 </table>
                 <%= link_to rooms_path, class:"btn btn-primary" do %>
-                    <% @rooms.each do |room| %>
-                        <% if message = room.messages.order(created_at: :desc).first %>
-                            <% if message.created_at.to_date == Date.today %>
-                                <% @count_all += 1 %>
-                            <% end %>
-                        <% end %>
-                    <% end %>
-                    本日の投稿全<%= @count_all %>件を表示する
+                    本日は<%= @count_all %>件の投稿があります
                 <% end %>
             </div>
         </div>

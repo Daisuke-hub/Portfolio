@@ -4,7 +4,7 @@
         <div class="image">
           <%= attachment_image_tag(@user, :user_image, :fill, 200, 200, fallback: "no_image.jpg", size: "200x200") %>
         </div>
-        <div class="result"></div>
+        <div id="result"></div>
         <div class="file">
           <%= f.attachment_field :user_image %>
         </div>

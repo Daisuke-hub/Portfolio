@@ -7,6 +7,13 @@ class UsersController < ApplicationController
     @rooms = Room.where("(host_id = ?) OR (member_id = ?)", current_user,current_user)
     @count = 0
     @count_all = 0
+    @rooms.each do |room|
+      if message = room.messages.order(created_at: :desc).first
+        if message.created_at.to_date == Date.today
+          @count_all += 1
+        end
+      end
+    end
   end
 
   def show
