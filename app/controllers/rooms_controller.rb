@@ -19,6 +19,18 @@ class RoomsController < ApplicationController
     room = Room.find(params[:id])
     @room_id = params[:id].to_i
     @messages = room.messages
+    if room.host_id == current_user.id
+      @receive_user_id = room.member_id
+    else
+      @receive_user_id = room.host_id
+    end
+
+    @sent_user_id = current_user.id
+    # if room.member_id == current_user.id
+    #   @receive_user_id = room.host_id
+    # else
+    #   @receive_user_id = room.member_id
+    # end
   end
 
   def index

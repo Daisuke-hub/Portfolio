@@ -1,11 +1,27 @@
-<div class="row">
-    <div class="col-xs-12">
-        <h1>Chat Room</h1>
-        <input type="text", class="chat-input", autofocus>
-        <button class="button">送信</button>
+<div class="room_back_image">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="room_back">
+                <div>Chat Room</div>
+                    <%= render 'message' %>
+                    <input type="hidden" id="room_id" value="<%= @room_id %>">
+                    <input type="hidden" id="receive_user_id" value="<%= @receive_user_id %>">
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <%= render 'message' %>
-
-        <input type="hidden" id="room_id" value="<%= @room_id %>">
+    <div class="message_input">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <div class="message_input_back">
+                        <input type="text", class="chat-input", autofocus>
+                        <button class="button">送信</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

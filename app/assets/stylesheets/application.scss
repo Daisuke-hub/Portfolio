@@ -16,6 +16,12 @@
  @import "bootstrap-sprockets";
  @import "bootstrap"; 
 
+//  header{
+//     position: fixed;
+//     width: 100%;
+//     top: 0px;
+//  }
+
 .session{
      font-size: 35px;
      color: white;
@@ -24,13 +30,19 @@
  .navbar{
      margin-bottom: 0;
      border-radius: 0;
+     border: none;
+    //  background: linear-gradient(90deg, black, rgba(255, 255, 0, 0.747), black, black, black, black, black)
+     background-color: rgba(0, 0, 0, 1);
+    //  background-image: url(background.jpg);
+    //  background-size: cover;
  }
 
  .current_user{
      text-align: left;
-     background-color: navy;
-     margin-bottom: 20px;
-     color: lightgray;
+     background-color: lightblue;
+     color: black;
+    //  margin-bottom: 20px;
+    //  background: linear-gradient(90deg, black, rgba(255, 255, 0, 0.747), black, black, black, black, black)
  }
 
 .nav{
@@ -39,7 +51,19 @@
 }
 
 body{
-    background-color: lightgray;
+    // background-color: #FFD700;
+    background-color: whitesmoke;
+    //  background-image: url(back.jpg);
+    //  background-position: top;
+    //  background-size: cover;
+}
+
+.back{
+    background-color: rgba(0, 0, 0, 0.1);
+    // width: 100%;
+    // background-position: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .registration{
@@ -56,36 +80,35 @@ td{
     text-align: left;
 }
 
-textarea{
-    width: 230px;
-}
-
-select{
-    width: 230px;
-}
-
-input{
-    width: 230px;
-}
-
 #balloon{
     border-radius: 10px;
+    box-shadow: 0px  0px 8px gray;
     padding: 5px 20px;
     font-size: 15px;
     background-color: lightyellow;
 }
 
-#message{
-    list-style: none;
+#new_message{
+    border-radius: 10px;
+    // box-shadow: 0px  0px 8px gray;
+    border: solid 1px lightgray;
+    padding: 5px 20px;
+    font-size: 15px;
+    background-color: lightyellow;
+}
+
+.sent_message{
     margin: 5px 0;
+}
+
+.receive_message{
+    margin: 5px 0 5px 200px;
+    // margin: 5px ;
 }
 
 ul{
     padding: 0;
-}
-
-.receive_message{
-    margin-left: 200px;
+    list-style: none;
 }
 
 .attachment{
@@ -118,6 +141,7 @@ ul{
     display: block;
     text-align: center;
     color: darkslategrey;
+    margin-bottom: 20px;
 }
 
 .time{
@@ -128,4 +152,13 @@ ul{
     width: 200px;
     height: 200px;
     border-radius: 50px;
+}
+
+.today_message{
+    width: 100%;
+    margin-top: 20px;
+    padding:20px 40px 20px 40px;
+    background-color:white;
+    box-shadow: 0px  0px 8px black;
+    border-radius: 10px;
 }

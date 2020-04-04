@@ -1,3 +1,56 @@
 // Place all the styles related to the abouts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#top_back_image{
+    height: 670px;
+    background-image: url(background.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+}
+
+#top_back{
+    width: 900px;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.6);
+    background-position: center;
+    text-align: center;
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    box-shadow: 0px  0px 8px black;
+
+}
+
+.top_title{
+    font-size: 73px;
+    font-weight: 600;
+    color: black;
+    padding: 60px;
+}
+
+.top_body{
+    font-size: 17px;
+}
+
+.first_action{
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 220px;
+    height: 180px;
+    margin: 30px 20px 0 20px;
+    padding-top: 60px;
+    font-size: 25px;
+    font-weight: 600;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0px  0px 8px black;
+    color: rgba(50, 50, 50, 1);
+}
+.first_action:hover{
+    background-color: rgba(255, 255, 255, 0.85);
+    color: black;
+
+}
