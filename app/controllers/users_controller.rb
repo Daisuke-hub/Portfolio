@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
   def index
-    @per = 7.to_i
+    @per = 20.to_i
     @q = User.ransack(params[:q])
     @users_all = @q.result(distinct: true)
     @users = @users_all.page(params[:page]).per(@per)
-    @rooms = Room.where("(host_id = ?) OR (member_id = ?)", current_user,current_user)
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @rooms = Room.where("(host_id = ?) OR (member_id = ?)", current_user,current_user).order(created_at: :desc)
     @count = 0
     @count_all = 0
     @rooms.each do |room|
@@ -14,10 +18,6 @@ class UsersController < ApplicationController
         end
       end
     end
-  end
-
-  def show
-    @user = User.find(params[:id])
   end
 
   def edit

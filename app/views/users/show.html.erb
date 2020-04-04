@@ -1,54 +1,118 @@
-<div class="row">
-    <div class="col-xs-4">
-        <%= attachment_image_tag(@user, :user_image, :fill, 200, 200, fallback: "no_image.jpg", size: "200x200") %>
-    </div>
-    <div class="col-xs-8">
-        <table class="table">
-            <tr>
-            <th class="show">ニックネーム</th>
-            <td><%= @user.name %></td>
-            </tr>
-
-            <tr>
-            <th>性別</th>
-            <td><%= @user.sex %></td>
-            </tr>
-
-            <tr>
-            <th>年齢</th>
-            <td><%= @user.age %></td>
-            </tr>
-
-            <tr>
-            <th>担当楽器</th>
-            <td><%= @user.instrument %></td>
-            </tr>
-
-            <tr>
-            <th>地域</th>
-            <td><%= @user.region %></td>
-            </tr>
-
-            <tr>
-            <th>自己評価</th>
-            <td><%= @user.level %></td>
-            </tr>
-
-            <tr>
-            <th>自己紹介</th>
-            <td><%= @user.introduction %></td>
-            </tr>
-        </table>
-        <% if @user.chat_flag == true %>
-            <%= link_to "チャットしてみる", room_path(@user), method: :post, class:"btn btn-primary btn-md" %>
-        <% else %>
-            <div class="btn btn-warning btn-md">チャット不可</div>
-        <% end %>
-
+<div class="edit_back_image">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
         <% if @user == current_user %>
-            <%= link_to "編集する", edit_user_path, class:"btn btn-primary btn-md" %>
+            <div class="today_message">
+                <span>最近の投稿</span>
+                <table class="table table-hover">
+                    <% @rooms.each do |room| %>
+                        <% break if @count == 3 %>
+                        <% if message = room.messages.order(created_at: :desc).first %>
+                            <% @count += 1 %>
+                            <tr>
+                                <% if room.host_id == current_user.id %>
+                                    <% user = User.where(id: room.member_id).first %>
+                                <% else %>
+                                    <% user = User.where(id: room.host_id).first %>
+                                <% end %>
+                                <td class="col-xs-1">
+                                    <%= link_to room_path(room) do %>
+                                        <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
+                                    <% end %>
+                                </td>
+                                <td>
+                                    <%= link_to room_path(room) do %>
+                                        <%= user.name %>
+                                    <% end %>
+                                </td>
+                                <td>
+                                    <div class="time"><%= message.created_at.strftime('%m/%d %H:%M') %></div>
+                                    <div id="new_message"><%= message.content.truncate(10) %></div>
+                                </td>
+                            </tr>
+                        <% end %>
+                    <% end %>
+                </table>
+                <%= link_to rooms_path, class:"btn btn-primary" do %>
+                    本日は<%= @count_all %>件の投稿があります
+                <% end %>
+            </div>
         <% end %>
+
+        <div class="edit">
+            <div>
+                <table class="table">
+                    <tr>
+                        <th class="title">画像</th>
+                        <td>
+                            <%= attachment_image_tag(@user, :user_image, :fill, 200, 200, fallback: "no_image.jpg", size: "200x200") %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="title">ニックネーム</th>
+                        <td class="field">
+                            <%= @user.name %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="title">性別</th>
+                        <td class="field">
+                            <%= @user.sex %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="title">年齢</th>
+                        <td class="field">
+                            <%= @user.age %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="title">担当楽器</th>
+                        <td class="field">
+                            <%= @user.instrument %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="title">自己評価点</th>
+                        <td class="field">
+                            <%= @user.level %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="title">活動地域</th>
+                        <td class="field">
+                            <%= @user.region %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="title">自己紹介</th>
+                        <td>
+                            <%= @user.introduction %>
+                        </td>
+                    </tr>
+                </table>
+                <% if @user.chat_flag == true %>
+                    <%= link_to "チャットしてみる", room_path(@user), method: :post, class:"btn btn-primary btn-md" %>
+                <% else %>
+                    <div class="btn btn-warning btn-md">チャット不可</div>
+                <% end %>
+
+                <% if @user == current_user %>
+                    <%= link_to "編集する", edit_user_path, class:"btn btn-primary btn-md" %>
+                <% end %>
+            </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+
 
 

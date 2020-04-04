@@ -1,92 +1,108 @@
-<div class="row">
-    <div class="col-xs-5">
-        <%= search_form_for @q do |f| %>
-            <div class="title">楽器</div>
-            <%= f.select :instrument_eq, ["ギター","ベース","ドラム","ボーカル","キーボード","その他"], class:"form_control" %>
-            <%# <div class="title">ジャンル</div> %>
-            <%#= f.collection_select :genre_cont, Genre.all, :id, :genre_name %>
-            <div class="title">性別</div>
-            <%= f.select :sex_eq, ["男性","女性","非公開","その他"], class:"form_control" %>
-            <div class="title">年齢</div>
-            <p><%= f.number_field :age_gteq %>以上〜</p>
-            <%= f.number_field :age_lt %>未満
-            <div class="title">活動地域</div>
-            <%= f.grouped_collection_select(:region_eq, Region.all, :prefectures, :region_name, :prefecture_name, :prefecture_name) %>
-            <div class="title">自己評価点</div>
-            <%= f.select :level_eq, [["1 (初心者)","1"],["2 (簡単な曲なら弾ける)","2"],["3 (簡単な曲なら耳コピができる)","3"],["4 (簡単なセッションができる)","4"],["5 (セッションができる)","5"]], class:"form_control" %>
-            <div class="title">キーワード</div>
-            <p><%= f.text_field :introduction_cont %></p>
-            <%= f.submit "検索" %>
-        <% end %>
+<div id="back_image">
+    <div id="back_image_effect">
 
-        <div class="row">
-            <div class="col-xs-10">
-                <span>最近の投稿</span>
-                <div id="iframe">
-                    <table class="table table-hover">
-                        <% @rooms.each do |room| %>
-                            <% break if @count == 3 %>
-                            <% if message = room.messages.order(created_at: :desc).first %>
-                                <% @count += 1 %>
-                                <tr>
-                                    <% if room.host_id == current_user.id %>
-                                        <% user = User.where(id: room.member_id).first %>
-                                    <% else %>
-                                        <% user = User.where(id: room.host_id).first %>
-                                    <% end %>
-                                    <td>
-                                        <%= link_to room_path(room) do %>
-                                            <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
-                                        <% end %>
-                                    </td>
-                                    <td>
-                                        <%= link_to room_path(room) do %>
-                                            <%= user.name %>
-                                        <% end %>
-                                    <td>
-                                    <td>
-                                        <div class="time"><%= message.created_at.strftime('%m/%d %H:%M') %></div>
-                                        <div id="balloon"><%= message.content.truncate(5) %></div>
-                                    </td>
-                                </tr>
-                            <% end %>
-                        <% end %>
-                    </table>
-                </div>
-                <%= link_to rooms_path, class:"btn btn-primary" do %>
-                    本日は<%= @count_all %>件の投稿があります
+    <div class="container">
+    <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+        <div class="search_window_back">
+            <div class="search_window">
+                <%= search_form_for @q do |f| %>
+                    <div class="title">楽器</div>
+                    <%= f.select :instrument_eq, ["","ギター","ベース","ドラム","ボーカル","キーボード","その他"], {}, {autofocus:"ture", class:"search_form"} %>
+                    <%# <div class="title">ジャンル</div> %>
+                    <%#= f.collection_select :genre_cont, Genre.all, :id, :genre_name %>
+                    <div class="title">性別</div>
+                    <%= f.select :sex_eq, ["","男性","女性"], {}, {class:"search_form"}  %>
+                    <div class="title">年齢</div>
+                    <%= f.number_field :age_gteq, class:"search_age" %>
+                    <span class="title">〜</span>
+                    <%= f.number_field :age_lt, class:"search_age" %>
+                    <div class="title">活動地域</div>
+                    <%= f.grouped_collection_select(:region_eq, Region.all, :prefectures, :region_name, :prefecture_name, :prefecture_name) %>
+                    <div class="title">自己評価点(Level)</div>
+                    <%= f.select :level_eq, [["",""],["1 (初心者)","1"],["2 (簡単な曲なら弾ける)","2"],["3 (簡単な曲なら耳コピができる)","3"],["4 (簡単なセッションができる)","4"],["5 (セッションができる)","5"]], {}, {class:"search_form"} %>
+                    <div class="title">キーワード</div>
+                    <p><%= f.text_field :introduction_cont, class:"text" %></p>
+                    <%= f.submit "検索", class:"submit btn btn-primary", class:"search_form" %>
                 <% end %>
             </div>
         </div>
-    </div>
 
-    <div class="col-xs-7" >
-        <table class="table table-hover">
-            <% @users.each do |user|%>
-                <tr>
-                    <td class="col-xs-1">
-                        <%= link_to user_path(user) do %>
-                            <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                        <% end %>
-                    </td>
-                    <td>
-                        <%= link_to user_path(user) do %>
-                            <div><%= user.name %></div>
-                            <%= user.introduction %>
-                        <% end %>
-                    </td>
-                </tr>
-            <% end %>
-        </table>
+        <div class="search_result_back">
+            <div class="search_result">
+                <div class="page_count">
+                    <% if @users.count == 0 %>0 〜
+                    <% else %>
+                        <%= @users.current_page * @per - @per + 1 %>〜
+                    <% end %>
+                    <%= @users.current_page * @per - @per + @users.count %>件目を表示 / 全
+                    <%= @users_all.count %>件
+                </div>
 
-        <div class="page_count">
-            <% if @users.count == 0 %>0 〜
-            <% else %>
-                <%= @users.current_page * @per - @per + 1 %>〜
-            <% end %>
-            <%= @users.current_page * @per - @per + @users.count %>件目を表示 / 全
-            <%= @users_all.count %>件
+                <table class="table table-hover">
+                    <% @users.each do |user|%>
+                        <tr>
+                            <td class="col-xs-1">
+                                <%= link_to user_path(user) do %>
+                                    <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                                <% end %>
+                            </td>
+                            <td>
+                                <%= link_to user_path(user) do %>
+                                    <div class="record">
+                                        <span class="name"><%= user.name %></span>
+                                        <span class="info">
+                                            <% if user.instrument == nil %>
+                                                未登録
+                                            <% else %>
+                                                <%= user.instrument %>
+                                            <% end %>
+                                        </span>
+                                        <span class="info">
+                                            <% if user.region == nil %>
+                                                未登録
+                                            <% else %>
+                                                <%= user.region %>
+                                            <% end %>
+                                        </span>
+                                        <span class="info">
+                                            <% if user.region == nil %>
+                                                未登録
+                                            <% else %>
+                                                Level.<%= user.level %>
+                                            <% end %>
+                                        </span>
+                                    </div>
+                                    <span class="intro">
+                                        <% if user.introduction == nil %>
+                                            <%= user.introduction %>
+                                        <% else %>
+                                            <%= user.introduction.truncate(88) %>
+                                        <% end %>
+                                    </span>
+                                <% end %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </table>
+
+                <div class="page_count">
+                    <%if @users.count >= 9 %>
+                        <% if @users.count == 0 %>0 〜
+                        <% else %>
+                            <%= @users.current_page * @per - @per + 1 %>〜
+                        <% end %>
+                        <%= @users.current_page * @per - @per + @users.count %>件目を表示 / 全
+                        <%= @users_all.count %>件
+                    <% end %>
+                </div>
+                <%= paginate @users %>
+            </div>
         </div>
-        <%= paginate @users %>
+
+
+    </div>
+    </div>
+    </div>    
     </div>
 </div>
