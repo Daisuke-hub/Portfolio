@@ -16,6 +16,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @user_id = current_user.id
     room = Room.find(params[:id])
     @room_id = params[:id].to_i
     @messages = room.messages
@@ -24,13 +25,7 @@ class RoomsController < ApplicationController
     else
       @receive_user_id = room.host_id
     end
-
-    @sent_user_id = current_user.id
-    # if room.member_id == current_user.id
-    #   @receive_user_id = room.host_id
-    # else
-    #   @receive_user_id = room.member_id
-    # end
+    @receive_user = User.where(id: @receive_user_id).first
   end
 
   def index

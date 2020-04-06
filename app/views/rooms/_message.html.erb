@@ -1,37 +1,32 @@
 <ul>
     <% @messages.each do |message| %>
         <% if message.user_id == current_user.id %>
-            <div class="sent_message">
-                <li class="<%= @sent_user_id %>">
-                    <span class="image">
-                        <%= attachment_image_tag(message.user, :user_image, :fill, 40, 40, fallback: "no_image.jpg")%>
-                    </span>
-                    <span id="balloon">
+            <li class="right">
+                <span class="created_time">
+                    <%= message.created_at.strftime('%m/%d %H:%M') %>
+                </span>
+                <span id="balloon_right">
                     <%= message.content %>
-                    </span>
-                </li>
-            </div>
+                </span>
+            </li>
         <% else%>
-            <div class="receive_message">
-                <li class="<%= @receive_user_id %>">
-                    <span class="image">
-                        <%= attachment_image_tag(message.user, :user_image, :fill, 40, 40, fallback: "no_image.jpg")%>
-                    </span>
-                    <span id="balloon">
-                        <%= message.content %>
-                    </span>
-                </li>
-            </div>
+            <li class="left">
+                <span class="image">
+                    <%= attachment_image_tag(message.user, :user_image, :fill, 40, 40, fallback: "no_image.jpg")%>
+                </span>
+                <span id="balloon">
+                    <%= message.content %>
+                </span>
+                <span class="created_time">
+                    <%= message.created_at.strftime('%m/%d %H:%M') %>
+                </span>
+            </li>
         <% end %>
     <% end %>
 </ul>
 
-<div class="row">
-    <div class="sent_message">
-        <ul id="add">
-        </ul>
-    </div>
-</div>
+<ul id="add"></ul>
+
 
 
 

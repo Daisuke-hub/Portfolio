@@ -23,7 +23,7 @@
                     <%= f.select :level_eq, [["",""],["1 (初心者)","1"],["2 (簡単な曲なら弾ける)","2"],["3 (簡単な曲なら耳コピができる)","3"],["4 (簡単なセッションができる)","4"],["5 (セッションができる)","5"]], {}, {class:"search_form"} %>
                     <div class="title">キーワード</div>
                     <p><%= f.text_field :introduction_cont, class:"text" %></p>
-                    <%= f.submit "検索", class:"submit btn btn-primary", class:"search_form" %>
+                    <%= f.submit "検索", class:"submit btn btn-primary", id:"search_input" %>
                 <% end %>
             </div>
         </div>

@@ -10,8 +10,13 @@ class RoomChannel < ApplicationCable::Channel
   def speak(data)
     message = Message.new(content: data["message"], user_id: current_user.id, room_id: data["room_id"])
     message.save
-    user = current_user
-    user_image = user.user_image
-    ActionCable.server.broadcast "room_channel", user_id: current_user.id, content: data["message"], receive_user_id: data["receive_user_id"] ,user_image: user_image
+    user_image = Refile.attachment_url(current_user, :user_image)
+    created_time = message.created_at.strftime('%m/%d %H:%M')
+    ActionCable.server.broadcast "room_channel", user_id: current_user.id, content: data["message"], message_id: message.id ,user_image: user_image, created_time: created_time, receive_user_id: data["receive_user_id"]
   end
+
+  # def received_user()
+  #   received_user_id = current_user.id
+  #   puts received_user_id
+  # end
 end

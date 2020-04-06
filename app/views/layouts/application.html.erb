@@ -21,14 +21,14 @@
               <% if user_signed_in? %>
                 <div>
                   <ul class="nav navbar-nav navbar-right">
-                    <li><%= link_to "サイトトップ", root_path %></li>
+                    <li><%= link_to "メンバー検索", users_path %></li>
                     <li><%= link_to "マイページ", user_path(current_user.id) %></li>
                     <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
                   </ul>
                 </div>
               <% else %>
                 <ul class="nav navbar-nav navbar-right">
-                  <li><%= link_to "サイトトップ", root_path %></li>
+                  <li><%= link_to "メンバー検索", users_path %></li>
                   <li><%= link_to "新規登録", new_user_registration_path %></li>
                   <li><%= link_to "ログイン", new_user_session_path %></li>
                 </ul>
@@ -37,18 +37,21 @@
           </div>
         </div>
       </nav>
-      <div class="current_user">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-              <% if user_signed_in? %>
-                <div><%= current_user.name %>さんがログイン中</div>
-              <% end %>
+      <div class="current_user_back">
+        <div class="current_user">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <% if user_signed_in? %>
+                  <div><%= current_user.name %>さんがログイン中</div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </header>
+    <div id="page_top">ページトップに戻る</div>
     <%= yield %>
   </body>
 </html>
