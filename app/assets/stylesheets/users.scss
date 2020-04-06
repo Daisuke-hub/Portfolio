@@ -81,7 +81,7 @@
 }
 
 .submit{
-    width: 70%;
+    width: 33%;
     border-radius: 5px;
     margin-top: 10px;
     box-shadow: 0px  0px 8px gray;
@@ -99,9 +99,9 @@ select{
     box-shadow: 0px  0px 8px gray;
 }
 
-.input{
+#search_input{
     padding-left: 7px;
-    width: 70%;
+    width: 33%;
     border-radius: 5px;
     box-shadow: 0px  0px 8px gray;
 }
@@ -162,22 +162,6 @@ table.table{
     color: gray;
 }
 
-.edit{
-    width: 100%;
-    margin: 20px 0 20px 0;
-    padding: 20px 40px 20px 40px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: solid 1px gray;
-    border-radius: 10px;
-    box-shadow: 0px  0px 8px gray;
-    padding-bottom: 20px;
-}
-
-.edit_back_image{
-    background-color: whitesmoke;
-    width: 100%;
-}
-
 .edit_btn{
     margin-left: 52%;
 }
@@ -188,4 +172,10 @@ th{
 
 .page_count{
     padding-top: 20px;
+}
+
+.edit_input{
+    width: 70%;
+    border-radius: 5px;
+    box-shadow: 0px  0px 8px gray;
 }

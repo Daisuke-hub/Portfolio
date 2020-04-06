@@ -16,11 +16,13 @@
  @import "bootstrap-sprockets";
  @import "bootstrap"; 
 
-//  header{
-//     position: fixed;
-//     width: 100%;
-//     top: 0px;
-//  }
+#body{
+    padding-top: 70px;
+}
+
+body{
+    background-color: whitesmoke;
+}
 
 .session{
      font-size: 35px;
@@ -37,25 +39,21 @@
     //  background-size: cover;
  }
 
+.current_user_back{
+    background-image: url(current_user.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
  .current_user{
-     text-align: left;
-     background-color: lightblue;
-     color: black;
-    //  margin-bottom: 20px;
-    //  background: linear-gradient(90deg, black, rgba(255, 255, 0, 0.747), black, black, black, black, black)
+    text-align: left;
+    background-color: rgba(0, 255, 255, 0.4);
+    color: lightgray;
  }
 
 .nav{
     font-size: 15px;
     color: white;
-}
-
-body{
-    // background-color: #FFD700;
-    background-color: whitesmoke;
-    //  background-image: url(back.jpg);
-    //  background-position: top;
-    //  background-size: cover;
 }
 
 .back{
@@ -80,30 +78,52 @@ td{
     text-align: left;
 }
 
-#balloon{
+#balloon, #balloon_right{
+    display: inline-block;
+    min-width: 5%;
+    max-width: 50%;
     border-radius: 10px;
-    box-shadow: 0px  0px 8px gray;
+    border: solid 1px gray;
+    box-shadow: 0px  0px 8px lightgray;
     padding: 5px 20px;
     font-size: 15px;
-    background-color: lightyellow;
+    background-color: #FFFFDD;
+    word-break: break-all;
+    margin-bottom: 19px;
+}
+
+#balloon_right{
+    border: solid 1px gray;
+    background-color: #e5f8fd;
+    margin-right: 40px;
+}
+
+#receive_balloon, #receive_balloon_right{
+    display: inline-block;
+    min-width: 5%;
+    max-width: 50%;
+    border-radius: 10px;
+    border: solid 1px gray;
+    box-shadow: 0px  0px 8px lightgray;
+    padding: 5px 20px;
+    font-size: 15px;
+    background-color: #FFFFDD;
+    word-break: break-all;
+    margin-bottom: 19px;
+}
+
+#receive_balloon_right{
+    border: solid 1px gray;
+    background-color: #e5f8fd;
+    margin-right: 40px;
 }
 
 #new_message{
     border-radius: 10px;
-    // box-shadow: 0px  0px 8px gray;
     border: solid 1px lightgray;
     padding: 5px 20px;
     font-size: 15px;
     background-color: lightyellow;
-}
-
-.sent_message{
-    margin: 5px 0;
-}
-
-.receive_message{
-    margin: 5px 0 5px 200px;
-    // margin: 5px ;
 }
 
 ul{
@@ -113,6 +133,9 @@ ul{
 
 .attachment{
     border-radius: 50px;
+    margin-bottom: 20px;
+    margin-right: 5px;
+
 }
 
 .page{
@@ -154,11 +177,40 @@ ul{
     border-radius: 50px;
 }
 
-.today_message{
+.float_window{
     width: 100%;
-    margin-top: 20px;
+    margin-bottom: 20px;
     padding:20px 40px 20px 40px;
     background-color:white;
     box-shadow: 0px  0px 8px black;
     border-radius: 10px;
+}
+
+.back_white{
+    padding: 20px;
+    width: 100%;
+    min-height: 700px;
+    background-color: white;
+    // padding-bottom: 20px;
+}
+
+.back_gray{
+    // background-color: lime;
+    background-color: whitesmoke;
+    width: 100%;
+    min-height: 700px;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+#page_top{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#page_top:hover{
+    color: red;
 }

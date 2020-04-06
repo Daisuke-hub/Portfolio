@@ -8,7 +8,7 @@ $(function(){
         var fileReader = new FileReader();
         fileReader.onloadend = function(event){
             var loadedImageUri = event.target.result
-            $("#result").html('<img src="' + loadedImageUri + '"id=preview >' );
+            $("#result").html('<img src="' + loadedImageUri + '"id=preview width="200" height="200" >' );
         }
         fileReader.readAsDataURL(selectedFile);
     });
