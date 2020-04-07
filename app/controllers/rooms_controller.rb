@@ -1,4 +1,7 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :baria_room, only: [:show]
+
   def create
     check_host = Room.where(host_id: current_user.id, member_id: params[:id]).exists?
     check_member = Room.where(host_id: params[:id], member_id: current_user.id).exists?
@@ -30,6 +33,15 @@ class RoomsController < ApplicationController
     user_messages = Message.where("(user_id = ?) OR (receiver_id = ?)", current_user, current_user)
     @user_messages = user_messages.order(created_at: :desc)
     @new_message = @user_messages.first
+  end
+
+  private
+
+  def baria_room
+    user_rooms = Room.where("(host_id = ?) OR (member_id = ?)", current_user,current_user)
+    if user_rooms.where(id: params[:id]).empty?
+      redirect_to user_path(current_user)
+    end
   end
 
 end
