@@ -16,22 +16,20 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @user_id = current_user.id
-    room = Room.find(params[:id])
-    @room_id = params[:id].to_i
-    @messages = room.messages
-    if room.host_id == current_user.id
-      @receive_user_id = room.member_id
+    @room = Room.find(params[:id])
+    @messages = @room.messages
+    if @room.host_id == current_user.id
+      @receive_user_id = @room.member_id
     else
-      @receive_user_id = room.host_id
+      @receive_user_id = @room.host_id
     end
     @receive_user = User.where(id: @receive_user_id).first
   end
 
   def index
-    @per = 8.to_i
-    @rooms_all = Room.where("(host_id = ?) OR (member_id = ?)", current_user,current_user)
-    @rooms = @rooms_all.page(params[:page]).per(@per)
+    user_messages = Message.where("(user_id = ?) OR (receiver_id = ?)", current_user, current_user)
+    @user_messages = user_messages.order(created_at: :desc)
+    @new_message = @user_messages.first
   end
 
 end

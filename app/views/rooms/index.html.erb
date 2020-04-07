@@ -2,47 +2,89 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
-                <div class="back_white">
-                    <span><%= current_user.name %>さんのチャットルーム一覧</span>
+                <div class="index_white_back">
+                    <span class="chat_title"><%= current_user.name %>さんのチャットルーム一覧</span>
                     <table class="table table-hover">
-                        <% @rooms.each do |room| %>
+                        <% if @user_messages.empty? == false %>
                             <tr>
+                                <% room = @new_message.room %>
                                 <% if room.host_id == current_user.id %>
                                     <% user = User.where(id: room.member_id).first %>
-                                <% else %>
-                                    <% user = User.where(id: room.host_id).first %>
-                                <% end %>
-
-                                <td>
-                                    <%= link_to room_path(room) do %>
-                                        <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
-                                    <% end %>
-                                </td>
-                                <td>
-                                    <%= link_to room_path(room) do %>
-                                        <%= user.name %>
-                                    <% end %>
-                                </td>
-                                <% if message = room.messages.order(created_at: :desc).first %>
+                                    <td class="col-xs-1">
+                                        <%= link_to room_path(room) do %>
+                                            <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
+                                        <% end %>
+                                    </td>
                                     <td>
-                                        <div class="time"><%= message.created_at.strftime('%m/%d %H:%M') %></div>
-                                        <div id="new_message"><%= message.content.truncate(20) %></div>
+                                        <%= link_to room_path(room) do %>
+                                            <span class="name"><%= user.name %></span>
+                                        <% end %>
                                     </td>
                                 <% else %>
-                                    <td>メッセージはありません</td>
+                                    <% user = User.where(id: room.host_id).first %>
+                                    <td class="col-xs-1">
+                                        <%= link_to room_path(room) do %>
+                                            <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
+                                        <% end %>
+                                    </td>
+                                    <td>
+                                        <%= link_to room_path(room) do %>
+                                            <span class="name"><%= user.name %></span>
+                                        <% end %>
+                                    </td>
                                 <% end %>
+                                <td>
+                                    <%= link_to room_path(room) do %>
+                                        <div class="time"><%= @new_message.created_at.strftime('%m/%d %H:%M') %></div>
+                                        <div id="new_message"><%= @new_message.content.truncate(20) %></div>
+                                    <% end %>
+                                </td>
                             </tr>
+                            <% room_id = @new_message.room_id %>
+                            <% old_message = @user_messages.where.not(room_id: room_id) %>
+                            <% message = old_message.order(created_at: :desc).first %>
+
+                            <% while old_message.count > 0 %>
+                                <tr>
+                                    <% room = message.room %>
+                                    <% if room.host_id == current_user.id %>
+                                        <% user = User.where(id: room.member_id).first %>
+                                        <td class="col-xs-1">
+                                            <%= link_to room_path(room) do %>
+                                                <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
+                                            <% end %>
+                                        </td>
+                                        <td>
+                                            <%= link_to room_path(room) do %>
+                                                <span class="name"><%= user.name %></span>
+                                            <% end %>
+                                        </td>
+                                    <% else %>
+                                        <% user = User.where(id: room.host_id).first %>
+                                        <td class="col-xs-1">
+                                            <%= link_to room_path(room) do %>
+                                                <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
+                                            <% end %>
+                                        </td>
+                                        <td>
+                                            <%= link_to room_path(room) do %>
+                                                <span class="name"><%= user.name %></span>
+                                            <% end %>
+                                        </td>
+                                    <% end %>
+                                    <td>
+                                        <%= link_to room_path(room) do %>
+                                            <div class="time"><%= message.created_at.strftime('%m/%d %H:%M') %></div>
+                                            <div id="new_message"><%= message.content.truncate(20) %></div>
+                                        <% end %>
+                                    </td>
+                                </tr>
+                                <% room_id = message.room_id %>
+                                <% old_message = old_message.where.not(room_id: room_id) %>
+                                <% message = old_message.order(created_at: :desc).first %>
+                            <% end %>
                         <% end %>
                     </table>
-                    <div class="page_count">
-                        <% if @rooms.count == 0 %>0 〜
-                        <% else %>
-                            <%= @rooms.current_page * @per - @per + 1 %>〜
-                        <% end %>
-                        <%= @rooms.current_page * @per - @per + @rooms.count %>件目を表示 / 全
-                        <%= @rooms_all.count %>件
-                    </div>
-                    <%= paginate @rooms %>
                 </div>
             </div>
         </div>

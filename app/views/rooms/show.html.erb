@@ -5,8 +5,8 @@
                 <div class="room_back">
                     <div><%= @receive_user.name %>さんとのチャットルーム</div>
                     <%= render 'message' %>
-                    <input type="hidden" id="room_id" value="<%= @room_id %>">
-                    <input type="hidden" id="user_id" value="<%= @user_id %>">
+                    <input type="hidden" id="room_id" value="<%= @room.id %>">
+                    <input type="hidden" id="user_id" value="<%= @current_user.id %>">
                     <input type="hidden" id="receive_user_id" value="<%= @receive_user_id %>">
                 </div>
             </div>

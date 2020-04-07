@@ -124,6 +124,7 @@ td{
     padding: 5px 20px;
     font-size: 15px;
     background-color: lightyellow;
+    color: black;
 }
 
 ul{
@@ -169,6 +170,7 @@ ul{
 
 .time{
     font-size: 5px;
+    color: gray;
 }
 
 #preview{
@@ -213,4 +215,10 @@ a:hover{
 
 #page_top:hover{
     color: red;
+}
+
+.index_white_back{
+    width: 100%;
+    min-height: 700px;
+    background-color: white;
 }
