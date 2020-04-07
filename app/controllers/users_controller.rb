@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :baria_user, only: [:edit, :update]
+
   def index
     @q = User.ransack(params[:q])
     @users_all = @q.result(distinct: true)
@@ -41,5 +43,12 @@ class UsersController < ApplicationController
 
   def genre_params
     params.require(:genre).permit(:genre_name)
+  end
+
+  def baria_user
+    user = User.find(params[:id])
+    if user != current_user
+      redirect_to user_path(current_user)
+    end
   end
 end
