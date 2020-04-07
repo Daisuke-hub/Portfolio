@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_03_25_182624) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.integer "room_id", null: false
+    t.integer "receiver_id", null: false
   end
 
   create_table "prefectures", force: :cascade do |t|

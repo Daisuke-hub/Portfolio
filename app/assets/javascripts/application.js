@@ -23,22 +23,6 @@ $(function(){
     });
 });
 
-// プッシュ通知の許可申請
-if (!('Notification' in window)) {
-    alert('未対応のブラウザです');
-    }else{
-    // 許可を求める
-    Notification.requestPermission()
-        .then((permission) => {
-        if (permission == 'granted') {
-            var notification = new Notification('プッシュ通知が許可されました');
-        } else if (permission == 'denied') {
-            var notification = new Notification('プッシュ通知を拒否しました');
-        } else if (permission == 'default') {
-        }
-        });
-}
-
 // ページ上部に推移
 $(function() {
     $('#page_top').on('click',function(){
@@ -46,5 +30,26 @@ $(function() {
         scrollTop:0
         }, 800);
         return false;
+    });
+});
+
+// プッシュ通知の許可申請
+$(function(){
+    $('#push').on('click',function(){
+        if (!('Notification' in window)) {
+            alert('通知昨日は未対応のブラウザです');
+            }else{
+            alert("ブラウザの通知設定を有効にすることで、チャットメッセージを受信した時に、プッシュ通知を受け取ることができます");
+            // 許可を求める
+            Notification.requestPermission()
+                .then((permission) => {
+                if (permission == 'granted') {
+                    var notification = new Notification('通知が許可されました');
+                } else if (permission == 'denied') {
+                    var notification = new Notification('通知を拒否しました');
+                } else if (permission == 'default') {
+                }
+            });
+        };
     });
 });

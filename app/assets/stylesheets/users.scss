@@ -47,11 +47,6 @@
     background-color: whitesmoke;
 }
 
-.search_result{
-    width: 100%;
-    background-color: white;
-}
-
 #back_image{
     // height: 670px;
     background-image: url(user_index.jpg);
@@ -178,4 +173,8 @@ th{
     width: 70%;
     border-radius: 5px;
     box-shadow: 0px  0px 8px gray;
+}
+
+#push:hover{
+    color: red;
 }

@@ -1,15 +1,17 @@
 class UsersController < ApplicationController
   def index
-    @per = 20.to_i
     @q = User.ransack(params[:q])
     @users_all = @q.result(distinct: true)
+    @per = 20.to_i
     @users = @users_all.page(params[:page]).per(@per)
   end
 
   def show
     @user = User.find(params[:id])
     @rooms = Room.where("(host_id = ?) OR (member_id = ?)", current_user,current_user).order(created_at: :desc)
-    @count = 0
+    user_messages = Message.where("(user_id = ?) OR (receiver_id = ?)", current_user, current_user)
+    @user_messages = user_messages.order(created_at: :desc)
+    @new_message = @user_messages.first
     @count_all = 0
     @rooms.each do |room|
       if message = room.messages.order(created_at: :desc).first

@@ -18,7 +18,6 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   },
 
   connected: function() {
-    // console.log("connected");
     // Called when the subscription is ready for use on the server
   },
 
@@ -27,10 +26,9 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   },
 
   received: function(data) {
-    console.log(data)
-    var received_user = $("#user_id").val();
-
-    if (received_user == data["user_id"]){
+    // var received_user = $("#user_id").val();
+    var current_user_id = $("#current_user_id").val();
+    if (current_user_id == data["user_id"]){
       $('<li>',{
         id: "message_id_" + data["message_id"],
         class: "right",
@@ -44,7 +42,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
         text: data["content"],
       }).appendTo("#message_id_" + data["message_id"]);
       
-    } else if (received_user == data["receive_user_id"]){
+    } else if (current_user_id == data["receive_user_id"]){
       $('<li>',{
         id: "message_id_" + data["message_id"],
         class: "left",
@@ -58,23 +56,20 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
         class: "created_time",
         text: data["created_time"],
       }).appendTo("#message_id_" + data["message_id"]);
-    }
-
+    };
     // 送りたい相手のidを取得してreceive時のcurrent_userと比較する
-    if (received_user == data["receive_user_id"]){
+    if (current_user_id == data["receive_user_id"]){
       var message = data["content"];
       App.room.notification(message);
-    } else if (received_user == data["user_id"]) {
+    } else if (current_user_id == data["user_id"]) {
       $('input').focus();
-
       $('#page_top').on('click',function(){
         $('body, html').animate({
         scrollBottom:0
         }, 800);
         return false;
       });
-      
-    }
+    };
     // Called when there's incoming data on the websocket for this channel
   },
 

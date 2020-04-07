@@ -8,7 +8,7 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    message = Message.new(content: data["message"], user_id: current_user.id, room_id: data["room_id"])
+    message = Message.new(content: data["message"], user_id: current_user.id, room_id: data["room_id"], receiver_id: data["receive_user_id"])
     message.save
     user_image = Refile.attachment_url(current_user, :user_image)
     created_time = message.created_at.strftime('%m/%d %H:%M')
