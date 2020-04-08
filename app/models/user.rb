@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   validates :name, presence: true
-  validates :introduction, length: {maximum: 200}
-  # validates :age, numericality: {greater_than: 0}
+  validates :introduction, length: {maximum: 300}
+  validates :age, numericality: {only_integer: true}
   acts_as_paranoid
   attachment :user_image
 end
