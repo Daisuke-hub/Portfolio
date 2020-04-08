@@ -3,7 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #top_back_image{
-    height: 670px;
+    // height: 670px;
+    height: 600px;
     background-image: url(background.jpg);
     background-size: cover;
     background-position: center;
@@ -16,10 +17,10 @@
     background-position: center;
     text-align: center;
     margin-top: 80px;
+    margin-bottom: 70px;
     border-radius: 10px;
     box-shadow: 0px  0px 8px black;
     padding: 40px 0 20px 0;
-
 }
 
 .top_title{
@@ -52,4 +53,50 @@
 .first_action:hover{
     background-color: rgba(255, 255, 255, 0.85);
     color: black;
+}
+
+.top_back_white{
+    padding: 20px;
+    width: 100%;
+    min-height: 1200px;
+    background-color: white;
+}
+
+.about{
+    margin-top: 20px;
+    width: 100%;
+    height: 500px;
+}
+
+.about_box{
+    width: 100%;
+    height: 300px;
+    background-color: lightcyan;
+    border: solid 1px black;
+    border-radius: 10px;
+    box-shadow: 0px  0px 8px gray;
+    margin-bottom: 20px;
+}
+
+.about_title{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 60px;
+    font-weight: 600;
+    color: gray;
+    text-align: center;
+}
+
+.about_head{
+    margin-top: 60px;
+    font-size: 40px;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+}
+
+.about_body{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 17px;
 }
