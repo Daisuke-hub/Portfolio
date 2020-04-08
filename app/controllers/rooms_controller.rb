@@ -20,17 +20,17 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @messages = @room.messages
+    @messages = @room.messages.with_deleted
     if @room.host_id == current_user.id
       @receive_user_id = @room.member_id
     else
       @receive_user_id = @room.host_id
     end
-    @receive_user = User.where(id: @receive_user_id).first
+    @receive_user = User.with_deleted.where(id: @receive_user_id).first
   end
 
   def index
-    user_messages = Message.where("(user_id = ?) OR (receiver_id = ?)", current_user, current_user)
+    user_messages = Message.with_deleted.where("(user_id = ?) OR (receiver_id = ?)", current_user, current_user)
     @user_messages = user_messages.order(created_at: :desc)
     @new_message = @user_messages.first
   end

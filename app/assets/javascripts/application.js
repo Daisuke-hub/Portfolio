@@ -17,10 +17,24 @@
 //= require_tree .
 
 // ブラウザバック時の強制リロード
-$(function(){
-    $(window).on("popstate", function (event) {
-        location.reload();
-    });
+// history.pushState(null, null, null);
+// $(window).on("popstate",function () {
+//     location.reload();
+// });
+
+// $(function(){
+    // history.pushState(null, null, null); //ブラウザバック無効化
+    // $(window).on("popstate", function (event) {
+    //   history.pushState(null, null, null);
+    //   window.alert('ブラウザバックは非対応です');
+    // // 　location.reload();
+    // });
+// });
+
+history.pushState(null, null, location.href);
+$(window).on("popstate", function (event) {
+  history.go(1);
+  location.reload();
 });
 
 // ページ上部に推移
