@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :genre_relationships, dependent: :destroy
   has_many :messages, dependent: :destroy
 
+  validates :name, presence: true
+  validates :introduction, length: {maximum: 200}
+  # validates :age, numericality: {greater_than: 0}
+
 end
