@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_25_182624) do
+ActiveRecord::Schema.define(version: 2020_04_08_040847) do
 
   create_table "genre_relationships", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2020_03_25_182624) do
     t.integer "user_id", null: false
     t.integer "room_id", null: false
     t.integer "receiver_id", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_messages_on_deleted_at"
   end
 
   create_table "prefectures", force: :cascade do |t|
@@ -75,7 +77,9 @@ ActiveRecord::Schema.define(version: 2020_03_25_182624) do
     t.boolean "chat_flag", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["age"], name: "index_users_on_age"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["instrument"], name: "index_users_on_instrument"
     t.index ["level"], name: "index_users_on_level"

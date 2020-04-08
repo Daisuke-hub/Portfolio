@@ -3,11 +3,15 @@
         <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
                 <div class="room_back">
-                    <div><%= @receive_user.name %>さんとのチャットルーム</div>
+                    <div class="chat_title">
+                        <% if @receive_user.deleted_at == nil %>
+                            <%= attachment_image_tag(@receive_user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                        <% else %>
+                            <%= image_tag"no_image.jpg", id:"message_image" %>
+                        <% end %>
+                        <span><%= @receive_user.name %>さんとのチャットルーム</span>
+                    </div>
                     <%= render 'message' %>
-                    <input type="hidden" id="room_id" value="<%= @room.id %>">
-                    <input type="hidden" id="user_id" value="<%= @current_user.id %>">
-                    <input type="hidden" id="receive_user_id" value="<%= @receive_user_id %>">
                 </div>
             </div>
         </div>
@@ -18,8 +22,15 @@
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2">
                     <div class="message_input_back">
+                    <% if @receive_user.deleted_at.nil? == true %>
+                        <input type="hidden" id="room_id" value="<%= @room.id %>">
+                        <input type="hidden" id="user_id" value="<%= @current_user.id %>">
+                        <input type="hidden" id="receive_user_id" value="<%= @receive_user_id %>">
                         <input type="text", class="chat-input", autofocus>
                         <button class="button">送信</button>
+                    <% else %>
+                        <%= link_to "このユーザーは退会しています", user_path(current_user), class:"btn btn-warning btn-block" %>
+                    <% end %>
                     </div>
                 </div>
             </div>

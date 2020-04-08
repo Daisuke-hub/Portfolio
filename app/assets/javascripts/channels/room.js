@@ -26,7 +26,6 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   },
 
   received: function(data) {
-    // var received_user = $("#user_id").val();
     var current_user_id = $("#current_user_id").val();
     if (current_user_id == data["user_id"]){
       $('<li>',{
@@ -57,7 +56,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
         text: data["created_time"],
       }).appendTo("#message_id_" + data["message_id"]);
     };
-    // 送りたい相手のidを取得してreceive時のcurrent_userと比較する
+
     if (current_user_id == data["receive_user_id"]){
       var message = data["content"];
       App.room.notification(message);

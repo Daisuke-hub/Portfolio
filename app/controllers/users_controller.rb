@@ -11,12 +11,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @rooms = Room.where("(host_id = ?) OR (member_id = ?)", current_user,current_user).order(created_at: :desc)
-    user_messages = Message.where("(user_id = ?) OR (receiver_id = ?)", current_user, current_user)
+    user_messages = Message.with_deleted.where("(user_id = ?) OR (receiver_id = ?)", current_user, current_user)
     @user_messages = user_messages.order(created_at: :desc)
     @new_message = @user_messages.first
     @count_all = 0
     @rooms.each do |room|
-      if message = room.messages.order(created_at: :desc).first
+      if message = room.messages.with_deleted.order(created_at: :desc).first
         if message.created_at.to_date == Date.today
           @count_all += 1
         end

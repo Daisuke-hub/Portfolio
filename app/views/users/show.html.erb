@@ -12,10 +12,14 @@
                             <tr>
                                 <% room = @new_message.room %>
                                 <% if room.host_id == current_user.id %>
-                                    <% user = User.where(id: room.member_id).first %>
+                                    <% user = User.with_deleted.where(id: room.member_id).first %>
                                     <td class="col-xs-1">
                                         <%= link_to room_path(room) do %>
-                                            <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
+                                            <% if user.deleted_at == nil %>
+                                                <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                                            <% else %>
+                                                <%= image_tag"no_image.jpg", id:"message_image" %>
+                                            <% end %>
                                         <% end %>
                                     </td>
                                     <td>
@@ -24,10 +28,14 @@
                                         <% end %>
                                     </td>
                                 <% else %>
-                                    <% user = User.where(id: room.host_id).first %>
+                                    <% user = User.with_deleted.where(id: room.host_id).first %>
                                     <td class="col-xs-1">
                                         <%= link_to room_path(room) do %>
-                                            <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
+                                            <% if user.deleted_at == nil %>
+                                                <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                                            <% else %>
+                                                <%= image_tag"no_image.jpg", id:"message_image" %>
+                                            <% end %>
                                         <% end %>
                                     </td>
                                     <td>
@@ -54,10 +62,14 @@
                                 <tr>
                                     <% room = message.room %>
                                     <% if room.host_id == current_user.id %>
-                                        <% user = User.where(id: room.member_id).first %>
+                                        <% user = User.with_deleted.where(id: room.member_id).first %>
                                         <td class="col-xs-1">
                                             <%= link_to room_path(room) do %>
-                                                <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
+                                                <% if user.deleted_at == nil %>
+                                                    <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                                                <% else %>
+                                                    <%= image_tag"no_image.jpg", id:"message_image" %>
+                                                <% end %>
                                             <% end %>
                                         </td>
                                         <td>
@@ -66,10 +78,14 @@
                                             <% end %>
                                         </td>
                                     <% else %>
-                                        <% user = User.where(id: room.host_id).first %>
+                                        <% user = User.with_deleted.where(id: room.host_id).first %>
                                         <td class="col-xs-1">
                                             <%= link_to room_path(room) do %>
-                                                <%= attachment_image_tag(user, :user_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40") %>
+                                                <% if user.deleted_at == nil %>
+                                                    <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                                                <% else %>
+                                                    <%= image_tag"no_image.jpg", id:"message_image" %>
+                                                <% end %>
                                             <% end %>
                                         </td>
                                         <td>
