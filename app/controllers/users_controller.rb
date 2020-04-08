@@ -29,11 +29,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    user.update(user_params)
-    # genre = Genre.find(genre_params)
-    # user.update(user_id: current_user.id, genre_id: genre.id)
-    redirect_to user_path(current_user)
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "ユーザー情報が更新されました"
+    else
+      render "edit"
+    end
   end
 
   private
