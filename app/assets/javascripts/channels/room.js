@@ -57,7 +57,8 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
       }).appendTo("#message_id_" + data["message_id"]);
     };
 
-    if (current_user_id == data["receive_user_id"]){
+    var chat_flag = $("#chat_flag").val();
+    if (current_user_id == data["receive_user_id"] && chat_flag == "true"){
       var message = data["content"];
       App.room.notification(message);
     } else if (current_user_id == data["user_id"]) {

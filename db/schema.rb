@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_040847) do
+ActiveRecord::Schema.define(version: 2020_04_09_034410) do
 
   create_table "genre_relationships", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_040847) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "sex"
-    t.string "age"
+    t.integer "age"
     t.string "instrument"
     t.string "region"
     t.text "introduction"

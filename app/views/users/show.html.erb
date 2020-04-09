@@ -6,7 +6,8 @@
         <div id="notice"><%= notice %></div>
             <% if @user == current_user %>
                 <div class="float_window">
-                    <span>最近の投稿</span>
+                    <span class="message_titile">最近の投稿</span>
+                    <span class="today_messages">(本日は<%= @count_all %>件の投稿があります)</span>
                     <table class="table table-hover">
                         <% if @rooms.empty? == false %>
                             <tr>
@@ -108,9 +109,8 @@
                         <% end %>
                     </table>
                     <%= link_to rooms_path, class:"btn btn-primary" do %>
-                        <span>チャットルームを全て表示する</span>
+                        <span>チャットルームを全件表示する</span>
                     <% end %>
-                        <span>本日は<%= @count_all %>件の投稿があります</span>
                 </div>
             <% end %>
 
@@ -172,9 +172,16 @@
                             </td>
                         </tr>
                     </table>
-                    <% if @user.chat_flag == true %>
-                        <% if @user == current_user %>
-                            <%= link_to "編集する", edit_user_path, class:"btn btn-primary btn-md" %>
+                    <% if @user == current_user %>
+                        <% if @user.chat_flag == false %>
+                            <div class="btn btn-warning btn-md">チャット不可</div>
+                        <% elsif @user.chat_flag == true %>
+                            <div class="btn btn-primary btn-md">チャット可能</div>
+                        <% end %>
+                        <%= link_to "編集する", edit_user_path, class:"btn btn-primary btn-md" %>
+                    <% else %>
+                        <% if @user.chat_flag == false %>
+                            <div class="btn btn-warning btn-md">チャット不可</div>
                         <% else %>
                             <% if user_signed_in? %>
                                 <%= link_to "チャットしてみる", room_path(@user), method: :post, class:"btn btn-primary btn-md" %>
@@ -182,8 +189,6 @@
                                 <%= link_to "チャットしてみる", new_user_session_path, class:"btn btn-primary btn-md" %>
                             <% end %>
                         <% end %>
-                    <% else %>
-                        <div class="btn btn-warning btn-md">チャット不可</div>
                     <% end %>
                 </div>
             </div>

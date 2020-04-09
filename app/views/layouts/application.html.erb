@@ -45,6 +45,9 @@
                 <% if user_signed_in? %>
                   <div><%= current_user.name %>さんがログイン中</div>
                   <input type="hidden" id="current_user_id" value="<%= current_user.id %>">
+                  <% if chat_flag = current_user.chat_flag %>
+                    <input type="hidden" id="chat_flag" value="<%= current_user.chat_flag %>">
+                  <% end %>
                 <% end %>
               </div>
             </div>

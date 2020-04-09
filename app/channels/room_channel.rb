@@ -14,9 +14,4 @@ class RoomChannel < ApplicationCable::Channel
     created_time = message.created_at.strftime('%m/%d %H:%M')
     ActionCable.server.broadcast "room_channel", user_id: current_user.id, content: data["message"], message_id: message.id ,user_image: user_image, created_time: created_time, receive_user_id: data["receive_user_id"]
   end
-
-  # def received_user()
-  #   received_user_id = current_user.id
-  #   puts received_user_id
-  # end
 end

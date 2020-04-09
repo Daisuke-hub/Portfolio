@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :introduction, length: {maximum: 300}
-  validates :age, numericality: {only_integer: true}
+  validates :age, numericality: {only_integer: true}, inclusion: { in: 1..200 }, allow_blank: true
   acts_as_paranoid
   attachment :user_image
 end
