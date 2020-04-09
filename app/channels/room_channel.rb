@@ -12,6 +12,6 @@ class RoomChannel < ApplicationCable::Channel
     message.save
     user_image = Refile.attachment_url(current_user, :user_image)
     created_time = message.created_at.strftime('%m/%d %H:%M')
-    ActionCable.server.broadcast "room_channel", user_id: current_user.id, content: data["message"], message_id: message.id ,user_image: user_image, created_time: created_time, receive_user_id: data["receive_user_id"]
+    ActionCable.server.broadcast "room_channel", user_id: current_user.id, content: data["message"], message_id: message.id ,user_image: user_image, created_time: created_time, receive_user_id: data["receive_user_id"], room_id: data["room_id"]
   end
 end

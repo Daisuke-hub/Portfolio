@@ -27,6 +27,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
 
   received: function(data) {
     var current_user_id = $("#current_user_id").val();
+    var room_id = $("#room_id").val();
     if (current_user_id == data["user_id"]){
       $('<li>',{
         id: "message_id_" + data["message_id"],
@@ -41,7 +42,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
         text: data["content"],
       }).appendTo("#message_id_" + data["message_id"]);
       
-    } else if (current_user_id == data["receive_user_id"]){
+    } else if (current_user_id == data["receive_user_id"] && room_id == data["room_id"]){
       $('<li>',{
         id: "message_id_" + data["message_id"],
         class: "left",
