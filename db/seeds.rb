@@ -64,6 +64,29 @@ Prefecture.create(region_id: "8", prefecture_name: "宮崎")
 Prefecture.create(region_id: "8", prefecture_name: "鹿児島")
 Prefecture.create(region_id: "9", prefecture_name: "沖縄")
 
+# User.create(email: "a@a",password: "aaaaaaa", name: "aaa", user_image_id: File.open('./app/assets/images/test.jpg') )
+
+require "csv"
+CSV.foreach('db/session.csv', headers: true) do |row|
+  User.create(
+    email: row['email'],
+    name: row['name'],
+    sex: row['sex'],
+    age: row['age'],
+    instrument: row['instrument'],
+    region: row['region'],
+    introduction: row['introduction'],
+    level: row['level'],
+    chat_flag: row['chat_flag'],
+    password: row['password']
+  )
+end
+
+
+
+
+
+
 
 
 
