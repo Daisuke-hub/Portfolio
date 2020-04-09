@@ -22,14 +22,18 @@
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2">
                     <div class="message_input_back">
-                    <% if @receive_user.deleted_at.nil? == true %>
+                    <% if @receive_user.deleted_at.nil? == false %>
+                        <%= link_to "このユーザーは、退会しました", user_path(current_user), class:"btn btn-warning btn-block" %>
+                    <% elsif @receive_user.chat_flag == false %>
+                        <%= link_to "このユーザーは、チャット受信設定をOFFにしています", user_path(current_user), class:"btn btn-warning btn-block" %>
+                    <% elsif current_user.chat_flag == false %>
+                        <%= link_to "チャット受信設定をOFFにしているため、チャットは利用できません。", user_path(current_user), class:"btn btn-warning btn-block" %>
+                    <% else %>
                         <input type="hidden" id="room_id" value="<%= @room.id %>">
                         <input type="hidden" id="user_id" value="<%= @current_user.id %>">
                         <input type="hidden" id="receive_user_id" value="<%= @receive_user_id %>">
                         <input type="text", class="chat-input", autofocus>
                         <button class="button">送信</button>
-                    <% else %>
-                        <%= link_to "このユーザーは退会しています", user_path(current_user), class:"btn btn-warning btn-block" %>
                     <% end %>
                     </div>
                 </div>

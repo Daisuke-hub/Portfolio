@@ -11,6 +11,16 @@ $(function() {
     });
 });
 
+$(function() {
+    $('#about_bottom').on('click',function(){
+        $('body, html').animate({
+        scrollTop:0
+        }, 600);
+        return false;
+        // $(window).scrollTop(600);
+    });
+});
+
 // $(function() {
 //     $(".about_head").on("click",function(){
 //         $(".about_head, .about_body").animate({
