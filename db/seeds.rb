@@ -64,7 +64,22 @@ Prefecture.create(region_id: "8", prefecture_name: "宮崎")
 Prefecture.create(region_id: "8", prefecture_name: "鹿児島")
 Prefecture.create(region_id: "9", prefecture_name: "沖縄")
 
-# User.create(email: "a@a",password: "aaaaaaa", name: "aaa", user_image_id: File.open('./app/assets/images/test.jpg') )
+Genre.create(genre_name: "ロック")
+Genre.create(genre_name: "ハードロック")
+Genre.create(genre_name: "メタル")
+Genre.create(genre_name: "ポップ")
+Genre.create(genre_name: "アニソン")
+Genre.create(genre_name: "ボカロ")
+Genre.create(genre_name: "ブルース")
+Genre.create(genre_name: "ジャズ")
+Genre.create(genre_name: "ボサノバ")
+Genre.create(genre_name: "カントリー")
+Genre.create(genre_name: "ゴスペル")
+Genre.create(genre_name: "ビジュアル系")
+Genre.create(genre_name: "弾き語り")
+Genre.create(genre_name: "セッション")
+Genre.create(genre_name: "カバー")
+Genre.create(genre_name: "オリジナル")
 
 require "csv"
 CSV.foreach('db/session.csv', headers: true) do |row|

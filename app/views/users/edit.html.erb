@@ -83,12 +83,24 @@
                   </tr>
 
                   <tr>
+                    <th class="title">ジャンル</th>
+                    <td>
+                      <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :genre_name) do |g| %>
+                        <%= g.label class: "form-check-label" do %>
+                          <%= g.check_box class:"form-check-input" %>
+                          <%= g.text %>
+                        <% end %>
+                      <% end %>
+                    </td>
+                  </tr>
+
+                  <tr>
                     <th class="title">自己紹介</th>
                     <td></td>
                   </tr>
                 </table>
                 <%= f.text_area :introduction, class:"introduction" %>
-              </div>
+                
 
               <div class="edit_btn">
                 <%= f.submit "更新する", class:"btn btn-primary btn-md"%>
