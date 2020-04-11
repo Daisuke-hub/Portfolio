@@ -6,14 +6,23 @@
         <%= form_for(@user) do |f| %>
           <div class="back_white">
             <!-- エラーメッセージ表示-->
-            <% if @user.errors.any? %>
-              <div class="error_title">入力内容が不適切です:</div>
-              <ul>
-                <% @user.errors.full_messages.each do |message| %>
-                <li class="error_body"><%= message %></li>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-offset-2 col-xs-8">
+
+
+                <% if @user.errors.any? %>
+                  <div class="error_title">入力内容が不適切です:</div>
+                  <ul>
+                    <% @user.errors.full_messages.each do |message| %>
+                    <li class="error_body"><%= message %></li>
+                    <% end %>
+                  </ul>
                 <% end %>
-              </ul>
-            <% end %>
+
+                </div>
+              </div>
+            </div>
             <!-- エラーメッセージ表示-->
             <div class="float_window">
               <div class="user_info">

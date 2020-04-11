@@ -136,7 +136,6 @@ ul{
     border-radius: 50px;
     margin-bottom: 20px;
     margin-right: 5px;
-
 }
 
 .page{
@@ -174,10 +173,8 @@ ul{
 }
 
 #preview{
-    width: 200px;
-    // width: auto;
-    // height: 200px;
-    height: auto;
+    max-width: 70%;
+    max-height: auto;
     border-radius: 50px;
 }
 

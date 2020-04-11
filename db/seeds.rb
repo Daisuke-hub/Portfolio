@@ -82,7 +82,7 @@ Genre.create(genre_name: "カバー")
 Genre.create(genre_name: "オリジナル")
 
 require "csv"
-CSV.foreach('db/session.csv', headers: true) do |row|
+CSV.foreach('db/user.csv', headers: true) do |row|
   User.create(
     email: row['email'],
     name: row['name'],
@@ -96,6 +96,14 @@ CSV.foreach('db/session.csv', headers: true) do |row|
     password: row['password']
   )
 end
+
+# require "csv"
+# CSV.foreach('db/genre_relationship.csv', headers: true) do |row|
+#   Genre_relationship.create(
+#     user_id: row['user_id'],
+#     room_id: row['room_id'],
+#   )
+# end
 
 
 
