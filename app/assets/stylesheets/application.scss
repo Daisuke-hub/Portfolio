@@ -33,10 +33,7 @@ body{
      margin-bottom: 0;
      border-radius: 0;
      border: none;
-    //  background: linear-gradient(90deg, black, rgba(255, 255, 0, 0.747), black, black, black, black, black)
      background-color: rgba(0, 0, 0, 1);
-    //  background-image: url(background.jpg);
-    //  background-size: cover;
  }
 
 .current_user_back{
@@ -58,8 +55,6 @@ body{
 
 .back{
     background-color: rgba(0, 0, 0, 0.1);
-    // width: 100%;
-    // background-position: center;
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -78,7 +73,7 @@ td{
     text-align: left;
 }
 
-#balloon, #balloon_right{
+.balloon, .balloon_right{
     display: inline-block;
     min-width: 5%;
     max-width: 50%;
@@ -92,13 +87,13 @@ td{
     margin-bottom: 19px;
 }
 
-#balloon_right{
+.balloon_right{
     border: solid 1px gray;
     background-color: #e5f8fd;
     margin-right: 40px;
 }
 
-#receive_balloon, #receive_balloon_right{
+.receive_balloon, .receive_balloon_right{
     display: inline-block;
     min-width: 5%;
     max-width: 50%;
@@ -112,13 +107,13 @@ td{
     margin-bottom: 19px;
 }
 
-#receive_balloon_right{
+.receive_balloon_right{
     border: solid 1px gray;
     background-color: #e5f8fd;
     margin-right: 40px;
 }
 
-#new_message{
+.new_message{
     border-radius: 10px;
     border: solid 1px lightgray;
     padding: 5px 20px;
@@ -160,13 +155,6 @@ ul{
     text-align: center;
 }
 
-.page_count{
-    display: block;
-    text-align: center;
-    color: darkslategrey;
-    margin-bottom: 20px;
-}
-
 .time{
     font-size: 5px;
     color: gray;
@@ -192,11 +180,9 @@ ul{
     width: 100%;
     min-height: 700px;
     background-color: white;
-    // padding-bottom: 20px;
 }
 
 .back_gray{
-    // background-color: lime;
     background-color: whitesmoke;
     width: 100%;
     min-height: 700px;
@@ -221,6 +207,8 @@ a:hover{
     width: 100%;
     min-height: 700px;
     background-color: white;
+    border-left: solid 1px white;
+    border-right: solid 1px white;
 }
 
 

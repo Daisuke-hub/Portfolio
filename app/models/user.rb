@@ -15,6 +15,7 @@ class User < ApplicationRecord
   acts_as_paranoid
   attachment :user_image
 
+  # バンドマン検索
   def self.search(instrument,sex,age_st,age_ed,region,level,introduction)
     if instrument.blank? == true
       search_instrument = User.all
@@ -52,7 +53,6 @@ class User < ApplicationRecord
       search_age = search_introduction.where(age: age_st..age_ed)
     end
 
-    # search_users = User.where("(instrument LIKE ?) AND (sex LIKE ?) AND (region LIKE ?) AND (introduction LIKE ?)","#{instrument}","#{sex}","#{region}","%#{introduction}%",)
   end
   
 end

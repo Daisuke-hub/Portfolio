@@ -38,7 +38,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
         text: data["created_time"],
       }).appendTo("#message_id_" + data["message_id"]);
       $('<span>',{
-        id: "receive_balloon_right",
+        class: "receive_balloon_right",
         text: data["content"],
       }).appendTo("#message_id_" + data["message_id"]);
       
@@ -48,12 +48,12 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
         class: "left",
       }).appendTo("#add");
       if (data["user_image"] == null){
-        $("#message_id_" + data["message_id"]).append('<img src=/assets/no_image.jpg id=message_image >' );
+        $("#message_id_" + data["message_id"]).append('<img src=/assets/no_image.jpg class=message_image >' );
       }else{
-        $("#message_id_" + data["message_id"]).append('<img src="' + data["user_image"] + '"id=message_image >' );
+        $("#message_id_" + data["message_id"]).append('<img src="' + data["user_image"] + '"class=message_image >' );
       };
       $('<span>',{
-        id: "receive_balloon",
+        class: "receive_balloon",
         text: data["content"],
       }).appendTo("#message_id_" + data["message_id"]);
       $('<span>',{

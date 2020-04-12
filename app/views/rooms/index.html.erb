@@ -44,7 +44,7 @@
                                 <td>
                                     <%= link_to room_path(room) do %>
                                         <div class="time"><%= @new_message.created_at.strftime('%m/%d %H:%M') %></div>
-                                        <div id="new_message"><%= @new_message.content.truncate(20) %></div>
+                                        <div class="new_message"><%= @new_message.content.truncate(20) %></div>
                                     <% end %>
                                 </td>
                             </tr>
@@ -91,7 +91,7 @@
                                     <td>
                                         <%= link_to room_path(room) do %>
                                             <div class="time"><%= message.created_at.strftime('%m/%d %H:%M') %></div>
-                                            <div id="new_message"><%= message.content.truncate(20) %></div>
+                                            <div class="new_message"><%= message.content.truncate(20) %></div>
                                         <% end %>
                                     </td>
                                 </tr>

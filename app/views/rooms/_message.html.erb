@@ -5,7 +5,7 @@
                 <span class="created_time">
                     <%= message.created_at.strftime('%m/%d %H:%M') %>
                 </span>
-                <span id="balloon_right">
+                <span class="balloon_right">
                     <%= message.content %>
                 </span>
             </li>
@@ -14,7 +14,7 @@
                 <span class="image">
                     <%= attachment_image_tag(message.user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50")%>
                 </span>
-                <span id="balloon">
+                <span class="balloon">
                     <%= message.content %>
                 </span>
                 <span class="created_time">
