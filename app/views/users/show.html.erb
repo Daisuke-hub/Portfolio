@@ -1,210 +1,210 @@
 <div class="back_gray">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
-        <div class="back_white">
-        <div id="notice"><%= notice %></div>
-            <% if @user == current_user %>
-                <div class="float_window">
-                    <span class="message_titile">最近の投稿</span>
-                    <span class="today_messages">(本日は<%= @count_all %>件の投稿があります)</span>
-                    <table class="table table-hover">
-                        <% if @new_message.nil? == false %>
-                            <tr>
-                                <% room = @new_message.room %>
-                                <% if room.host_id == current_user.id %>
-                                    <% user = User.with_deleted.where(id: room.member_id).first %>
-                                    <td class="col-xs-1">
-                                        <%= link_to room_path(room) do %>
-                                            <% if user.deleted_at == nil %>
-                                                <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                                            <% else %>
-                                                <%= image_tag"no_image.jpg", id:"message_image" %>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="back_white">
+                    <div id="notice"><%= notice %></div>
+                    <% if @user == current_user %>
+                        <div class="float_window">
+                            <span class="message_titile">最近の投稿</span>
+                            <span class="today_messages">(本日は<%= @count_all %>件の投稿があります)</span>
+                            <table class="table table-hover">
+                                <% if @new_message.nil? == false %>
+                                    <tr>
+                                        <% room = @new_message.room %>
+                                        <% if room.host_id == current_user.id %>
+                                            <% user = User.with_deleted.where(id: room.member_id).first %>
+                                            <td class="col-xs-1">
+                                                <%= link_to room_path(room) do %>
+                                                    <% if user.deleted_at == nil %>
+                                                        <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                                                    <% else %>
+                                                        <%= image_tag"no_image.jpg", id:"message_image" %>
+                                                    <% end %>
+                                                <% end %>
+                                            </td>
+                                            <td>
+                                                <%= link_to room_path(room) do %>
+                                                    <span class="room_name"><%= user.name %></span>
+                                                <% end %>
+                                            </td>
+                                        <% else %>
+                                            <% user = User.with_deleted.where(id: room.host_id).first %>
+                                            <td class="col-xs-1">
+                                                <%= link_to room_path(room) do %>
+                                                    <% if user.deleted_at == nil %>
+                                                        <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                                                    <% else %>
+                                                        <%= image_tag"no_image.jpg", id:"message_image" %>
+                                                    <% end %>
+                                                <% end %>
+                                            </td>
+                                            <td>
+                                                <%= link_to room_path(room) do %>
+                                                    <span class="room_name"><%= user.name %></span>
+                                                <% end %>
+                                            </td>
+                                        <% end %>
+                                        <td>
+                                            <%= link_to room_path(room) do %>
+                                                <div class="time"><%= @new_message.created_at.strftime('%m/%d %H:%M') %></div>
+                                                <div class="new_message"><%= @new_message.content.truncate(20) %></div>
                                             <% end %>
-                                        <% end %>
-                                    </td>
-                                    <td>
-                                        <%= link_to room_path(room) do %>
-                                            <span class="room_name"><%= user.name %></span>
-                                        <% end %>
-                                    </td>
-                                <% else %>
-                                    <% user = User.with_deleted.where(id: room.host_id).first %>
-                                    <td class="col-xs-1">
-                                        <%= link_to room_path(room) do %>
-                                            <% if user.deleted_at == nil %>
-                                                <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                                            <% else %>
-                                                <%= image_tag"no_image.jpg", id:"message_image" %>
-                                            <% end %>
-                                        <% end %>
-                                    </td>
-                                    <td>
-                                        <%= link_to room_path(room) do %>
-                                            <span class="room_name"><%= user.name %></span>
-                                        <% end %>
-                                    </td>
-                                <% end %>
-                                <td>
-                                    <%= link_to room_path(room) do %>
-                                        <div class="time"><%= @new_message.created_at.strftime('%m/%d %H:%M') %></div>
-                                        <div id="new_message"><%= @new_message.content.truncate(20) %></div>
-                                    <% end %>
-                                </td>
-                            </tr>
-                            <% room_id = @new_message.room_id %>
-                            <% old_message = @user_messages.where.not(room_id: room_id) %>
-                            <% message = old_message.order(created_at: :desc).first %>
+                                        </td>
+                                    </tr>
+                                    <% room_id = @new_message.room_id %>
+                                    <% old_message = @user_messages.where.not(room_id: room_id) %>
+                                    <% message = old_message.order(created_at: :desc).first %>
 
-                            <% limit = 0 %>
-                            <% while old_message.count > 0 %>
-                                <% limit += 1 %>
-                                <% break if limit == 3 %>
-                                <tr>
-                                    <% room = message.room %>
-                                    <% if room.host_id == current_user.id %>
-                                        <% user = User.with_deleted.where(id: room.member_id).first %>
-                                        <td class="col-xs-1">
-                                            <%= link_to room_path(room) do %>
-                                                <% if user.deleted_at == nil %>
-                                                    <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                                                <% else %>
-                                                    <%= image_tag"no_image.jpg", id:"message_image" %>
+                                    <% limit = 0 %>
+                                    <% while old_message.count > 0 %>
+                                        <% limit += 1 %>
+                                        <% break if limit == 3 %>
+                                        <tr>
+                                            <% room = message.room %>
+                                            <% if room.host_id == current_user.id %>
+                                                <% user = User.with_deleted.where(id: room.member_id).first %>
+                                                <td class="col-xs-1">
+                                                    <%= link_to room_path(room) do %>
+                                                        <% if user.deleted_at == nil %>
+                                                            <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                                                        <% else %>
+                                                            <%= image_tag"no_image.jpg", id:"message_image" %>
+                                                        <% end %>
+                                                    <% end %>
+                                                </td>
+                                                <td>
+                                                    <%= link_to room_path(room) do %>
+                                                        <span class="room_name"><%= user.name %></span>
+                                                    <% end %>
+                                                </td>
+                                            <% else %>
+                                                <% user = User.with_deleted.where(id: room.host_id).first %>
+                                                <td class="col-xs-1">
+                                                    <%= link_to room_path(room) do %>
+                                                        <% if user.deleted_at == nil %>
+                                                            <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                                                        <% else %>
+                                                            <%= image_tag"no_image.jpg", id:"message_image" %>
+                                                        <% end %>
+                                                    <% end %>
+                                                </td>
+                                                <td>
+                                                    <%= link_to room_path(room) do %>
+                                                        <span class="room_name"><%= user.name %></span>
+                                                    <% end %>
+                                                </td>
+                                            <% end %>
+                                            <td>
+                                                <%= link_to room_path(room) do %>
+                                                    <div class="time"><%= message.created_at.strftime('%m/%d %H:%M') %></div>
+                                                    <div class="new_message"><%= message.content.truncate(20) %></div>
                                                 <% end %>
-                                            <% end %>
-                                        </td>
-                                        <td>
-                                            <%= link_to room_path(room) do %>
-                                                <span class="room_name"><%= user.name %></span>
-                                            <% end %>
-                                        </td>
-                                    <% else %>
-                                        <% user = User.with_deleted.where(id: room.host_id).first %>
-                                        <td class="col-xs-1">
-                                            <%= link_to room_path(room) do %>
-                                                <% if user.deleted_at == nil %>
-                                                    <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                                                <% else %>
-                                                    <%= image_tag"no_image.jpg", id:"message_image" %>
-                                                <% end %>
-                                            <% end %>
-                                        </td>
-                                        <td>
-                                            <%= link_to room_path(room) do %>
-                                                <span class="room_name"><%= user.name %></span>
-                                            <% end %>
-                                        </td>
+                                            </td>
+                                        </tr>
+                                        <% room_id = message.room_id %>
+                                        <% old_message = old_message.where.not(room_id: room_id) %>
+                                        <% message = old_message.order(created_at: :desc).first %>
                                     <% end %>
+                                <% end %>
+                            </table>
+                            <%= link_to rooms_path, class:"btn btn-primary" do %>
+                                <span>チャットルームを全件表示する</span>
+                            <% end %>
+                        </div>
+                    <% end %>
+
+                    <div class="float_window">
+                        <div>
+                            <table class="table">
+                                <tr>
+                                    <th class="title">画像</th>
                                     <td>
-                                        <%= link_to room_path(room) do %>
-                                            <div class="time"><%= message.created_at.strftime('%m/%d %H:%M') %></div>
-                                            <div id="new_message"><%= message.content.truncate(20) %></div>
+                                        <%= attachment_image_tag(@user, :user_image, :fill, 200, 200, fallback: "no_image.jpg", size: "200x200") %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="title">ニックネーム</th>
+                                    <td class="field">
+                                        <%= @user.name %>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="title">性別</th>
+                                    <td class="field">
+                                        <%= @user.sex %>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="title">年齢</th>
+                                    <td class="field">
+                                        <%= @user.age %>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="title">担当楽器</th>
+                                    <td class="field">
+                                        <%= @user.instrument %>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="title">自己評価点</th>
+                                    <td class="field">
+                                        <%= @user.level %>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="title">活動地域</th>
+                                    <td class="field">
+                                        <%= @user.region %>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>ジャンル</th>
+                                    <td>
+                                        <% @user.genres. each do |genre| %>
+                                            <span class="genre_icon"><%= genre.genre_name  %></span>
                                         <% end %>
                                     </td>
                                 </tr>
-                                <% room_id = message.room_id %>
-                                <% old_message = old_message.where.not(room_id: room_id) %>
-                                <% message = old_message.order(created_at: :desc).first %>
-                            <% end %>
-                        <% end %>
-                    </table>
-                    <%= link_to rooms_path, class:"btn btn-primary" do %>
-                        <span>チャットルームを全件表示する</span>
-                    <% end %>
-                </div>
-            <% end %>
-
-            <div class="float_window">
-                <div>
-                    <table class="table">
-                        <tr>
-                            <th class="title">画像</th>
-                            <td>
-                                <%= attachment_image_tag(@user, :user_image, :fill, 200, 200, fallback: "no_image.jpg", size: "200x200") %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="title">ニックネーム</th>
-                            <td class="field">
-                                <%= @user.name %>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th class="title">性別</th>
-                            <td class="field">
-                                <%= @user.sex %>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th class="title">年齢</th>
-                            <td class="field">
-                                <%= @user.age %>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th class="title">担当楽器</th>
-                            <td class="field">
-                                <%= @user.instrument %>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th class="title">自己評価点</th>
-                            <td class="field">
-                                <%= @user.level %>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th class="title">活動地域</th>
-                            <td class="field">
-                                <%= @user.region %>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th>ジャンル</th>
-                            <td>
-                                <% @user.genres. each do |genre| %>
-                                    <span class="genre_icon"><%= genre.genre_name  %></span>
+                                    
+                                <tr>
+                                    <th class="title">自己紹介</th>
+                                    <td>
+                                        <%= @user.introduction %>
+                                    </td>
+                                </tr>
+                            </table>
+                            <% if @user == current_user %>
+                                <% if @user.chat_flag == false %>
+                                    <div class="btn btn-default btn-md">チャット不可</div>
+                                <% elsif @user.chat_flag == true %>
+                                    <div class="btn btn-primary btn-md">チャット可能</div>
                                 <% end %>
-                            </td>
-                        </tr>
-                            
-                        <tr>
-                            <th class="title">自己紹介</th>
-                            <td>
-                                <%= @user.introduction %>
-                            </td>
-                        </tr>
-                    </table>
-                    <% if @user == current_user %>
-                        <% if @user.chat_flag == false %>
-                            <div class="btn btn-default btn-md">チャット不可</div>
-                        <% elsif @user.chat_flag == true %>
-                            <div class="btn btn-primary btn-md">チャット可能</div>
-                        <% end %>
-                        <%= link_to "編集する", edit_user_path, class:"btn btn-primary btn-md" %>
-                    <% else %>
-                        <% if @user.chat_flag == false %>
-                            <div class="btn btn-default btn-md">チャット不可</div>
-                        <% else %>
-                            <% if user_signed_in? %>
-                                <%= link_to "チャットしてみる", room_path(@user), method: :post, class:"btn btn-primary btn-md" %>
+                                <%= link_to "編集する", edit_user_path, class:"btn btn-primary btn-md" %>
                             <% else %>
-                                <%= link_to "チャットしてみる", new_user_session_path, class:"btn btn-primary btn-md" %>
+                                <% if @user.chat_flag == false %>
+                                    <div class="btn btn-default btn-md">チャット不可</div>
+                                <% else %>
+                                    <% if user_signed_in? %>
+                                        <%= link_to "チャットしてみる", room_path(@user), method: :post, class:"btn btn-primary btn-md" %>
+                                    <% else %>
+                                        <%= link_to "チャットしてみる", new_user_session_path, class:"btn btn-primary btn-md" %>
+                                    <% end %>
+                                <% end %>
                             <% end %>
-                        <% end %>
-                    <% end %>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
-  </div>
 </div>
 
 

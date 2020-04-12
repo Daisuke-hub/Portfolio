@@ -7,19 +7,18 @@ $(function() {
         scrollTop:600
         }, 600);
         return false;
-        // $(window).scrollTop(600);
     });
 });
 
-$(function() {
-    $('#about_bottom').on('click',function(){
-        $('body, html').animate({
-        scrollTop:0
-        }, 600);
-        return false;
-        // $(window).scrollTop(600);
-    });
-});
+// $(function(){
+//     $("#top_back").animate({
+//         "opacity": 0
+//     }).setTimeout(function(){
+//         this.animate({
+//             "opacity": "1"
+//         });
+//     },1000);
+// });
 
 // $(function() {
 //     $(".about_head").on("click",function(){

@@ -16,19 +16,30 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-// ブラウザバック時の強制リロード
-history.pushState(null, null, location.href);
-$(window).on("popstate", function () {
-  history.go(1);
-  location.reload();
+// history.pushState(null, null, location.href);
+// $(window).on("popstate", function () {
+// //   history.go(1);
+//   location.reload();
+// });
+
+$(function(){
+    history.pushState(null, null, null);
+    $(window).on("popstate", function (event) {
+      history.pushState(null, null, null);
+    });
 });
+
+// history.pushState(null, null, null);
+// window.addEventListener('popstate', function(e) {
+//   history.pushState(null, null, null);
+// });
 
 // ページ上部に推移
 $(function() {
-    $('#page_top').on('click',function(){
+    $('#page_top, #about_botton').on('click',function(){
         $('body, html').animate({
         scrollTop:0
-        }, 800);
+        }, 600);
         return false;
     });
 });
@@ -40,7 +51,6 @@ $(function(){
             alert('お使いのブラウザは通知機能非対応です');
             }else{
             alert("ブラウザの通知設定を有効にすることで、チャットメッセージを受信した時に、プッシュ通知を受け取ることができます。(ブラウザによっては通知を受け取れない場合があります。)");
-            // 許可を求める
             Notification.requestPermission()
                 .then((permission) => {
                 if (permission == 'granted') {
