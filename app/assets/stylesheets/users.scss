@@ -161,8 +161,8 @@ table.table{
     font-weight: 500;
     font-size: 15px;
     color: #5bc0de;
-    width: 15%;
-    margin-right: 5%;
+    width: 20%;
+    margin-right: 5px;
 }
 
 .room_name{
@@ -214,4 +214,10 @@ th{
     text-align: center;
     color: darkslategrey;
     padding: 10px 0 10px 0;
+}
+
+.form-check-label{
+    width: 30%;
+    height: 10px;
+    font-weight: 500;
 }

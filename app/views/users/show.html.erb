@@ -195,7 +195,7 @@
                                     <% if user_signed_in? %>
                                         <%= link_to "チャットしてみる", room_path(@user), method: :post, class:"btn btn-primary btn-md" %>
                                     <% else %>
-                                        <%= link_to "チャットしてみる", new_user_session_path, class:"btn btn-primary btn-md" %>
+                                        <%= link_to "チャットしてみる", new_user_registration_path, class:"btn btn-primary btn-md", data: {confirm: "チャットをするには会員登録が必要です"} %>
                                     <% end %>
                                 <% end %>
                             <% end %>
