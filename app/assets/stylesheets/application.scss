@@ -29,6 +29,10 @@ body{
      color: white;
  }
 
+ .session:hover{
+     color: gray;
+ }
+
  .navbar{
      margin-bottom: 0;
      border-radius: 0;
@@ -194,13 +198,15 @@ a:hover{
 
 #page_top{
     position: fixed;
-    bottom: 5px;
+    bottom: 0px;
     right: 20px;
     color: gray;
+    font-size: 28px;
 }
 
 #page_top:hover{
     color: green;
+    font-size: 30px;
 }
 
 .index_white_back{
@@ -211,9 +217,6 @@ a:hover{
     border-right: solid 1px white;
 }
 
-
-
-
 .error_title{
     font-size: 30px;
     color: red;
@@ -222,3 +225,4 @@ a:hover{
 .error_body{
     color: red;
 }
+

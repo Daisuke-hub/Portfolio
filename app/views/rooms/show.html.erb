@@ -4,12 +4,14 @@
             <div class="col-xs-8 col-xs-offset-2">
                 <div class="room_back">
                     <div class="chat_title">
-                        <% if @receive_user.deleted_at == nil %>
-                            <%= attachment_image_tag(@receive_user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                        <% else %>
-                            <%= image_tag"no_image.jpg", id:"message_image" %>
+                        <%= link_to user_path(@receive_user) do %>
+                            <% if @receive_user.deleted_at == nil %>
+                                <%= attachment_image_tag(@receive_user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                            <% else %>
+                                <%= image_tag"no_image.jpg", id:"message_image" %>
+                            <% end %>
+                            <span class="receive_user_name" ><%= @receive_user.name %>さんとのチャットルーム</span>
                         <% end %>
-                        <span><%= @receive_user.name %>さんとのチャットルーム</span>
                     </div>
                     <%= render 'message' %>
                 </div>

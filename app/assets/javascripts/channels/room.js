@@ -86,9 +86,14 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
 $(function(){
   $(".button").on("click",function(){
     var content = $(".chat-input").val();
-    var room_id = $("#room_id").val();
-    var receive_user_id = $("#receive_user_id").val();
-    App.room.speak(content, room_id, receive_user_id);
-    $(".chat-input").val("")
+    if(content.length == 0){
+      alert("メッセージを入力して下さい");
+      $('input').focus();
+    }else{
+      var room_id = $("#room_id").val();
+      var receive_user_id = $("#receive_user_id").val();
+      App.room.speak(content, room_id, receive_user_id);
+      $(".chat-input").val("")
+    };
   });
 });
