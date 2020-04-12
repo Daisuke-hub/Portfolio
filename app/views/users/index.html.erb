@@ -8,7 +8,7 @@
             <div class="search_window">
                 <%= form_with(url: users_path, method: :get, local: true) do |f| %>
                     <div class="title">楽器</div>
-                    <%= f.select :instrument, ["","ギター","ベース","ドラム","ボーカル","キーボード","その他"], {}, {autofocus:"ture", class:"search_form"} %>
+                    <%= f.select :instrument, ["","ギター","ベース","ドラム","ボーカル","キーボード","作詞担当","作曲担当","その他"], {}, {autofocus:"ture", class:"search_form"} %>
                     <div class="title">ジャンル</div>
                     <%= f.collection_select :genre_name, Genre.all, :genre_name, :genre_name, include_blank: true %>
                     <div class="title">性別</div>

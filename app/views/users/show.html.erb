@@ -9,7 +9,7 @@
                     <span class="message_titile">最近の投稿</span>
                     <span class="today_messages">(本日は<%= @count_all %>件の投稿があります)</span>
                     <table class="table table-hover">
-                        <% if @rooms.empty? == false %>
+                        <% if @new_message.nil? == false %>
                             <tr>
                                 <% room = @new_message.room %>
                                 <% if room.host_id == current_user.id %>
@@ -25,7 +25,7 @@
                                     </td>
                                     <td>
                                         <%= link_to room_path(room) do %>
-                                            <span class="name"><%= user.name %></span>
+                                            <span class="room_name"><%= user.name %></span>
                                         <% end %>
                                     </td>
                                 <% else %>
@@ -41,7 +41,7 @@
                                     </td>
                                     <td>
                                         <%= link_to room_path(room) do %>
-                                            <span class="name"><%= user.name %></span>
+                                            <span class="room_name"><%= user.name %></span>
                                         <% end %>
                                     </td>
                                 <% end %>
@@ -75,7 +75,7 @@
                                         </td>
                                         <td>
                                             <%= link_to room_path(room) do %>
-                                                <span class="name"><%= user.name %></span>
+                                                <span class="room_name"><%= user.name %></span>
                                             <% end %>
                                         </td>
                                     <% else %>
@@ -91,7 +91,7 @@
                                         </td>
                                         <td>
                                             <%= link_to room_path(room) do %>
-                                                <span class="name"><%= user.name %></span>
+                                                <span class="room_name"><%= user.name %></span>
                                             <% end %>
                                         </td>
                                     <% end %>
@@ -169,7 +169,7 @@
                             <th>ジャンル</th>
                             <td>
                                 <% @user.genres. each do |genre| %>
-                                    <span class="btn btn-info btn-xs"><%= genre.genre_name  %></span>
+                                    <span class="genre_icon"><%= genre.genre_name  %></span>
                                 <% end %>
                             </td>
                         </tr>
@@ -183,14 +183,14 @@
                     </table>
                     <% if @user == current_user %>
                         <% if @user.chat_flag == false %>
-                            <div class="btn btn-warning btn-md">チャット不可</div>
+                            <div class="btn btn-default btn-md">チャット不可</div>
                         <% elsif @user.chat_flag == true %>
                             <div class="btn btn-primary btn-md">チャット可能</div>
                         <% end %>
                         <%= link_to "編集する", edit_user_path, class:"btn btn-primary btn-md" %>
                     <% else %>
                         <% if @user.chat_flag == false %>
-                            <div class="btn btn-warning btn-md">チャット不可</div>
+                            <div class="btn btn-default btn-md">チャット不可</div>
                         <% else %>
                             <% if user_signed_in? %>
                                 <%= link_to "チャットしてみる", room_path(@user), method: :post, class:"btn btn-primary btn-md" %>

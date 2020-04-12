@@ -47,7 +47,11 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
         id: "message_id_" + data["message_id"],
         class: "left",
       }).appendTo("#add");
-      $("#message_id_" + data["message_id"]).append('<img src="' + data["user_image"] + '"id=message_image >' );
+      if (data["user_image"] == null){
+        $("#message_id_" + data["message_id"]).append('<img src=/assets/no_image.jpg id=message_image >' );
+      }else{
+        $("#message_id_" + data["message_id"]).append('<img src="' + data["user_image"] + '"id=message_image >' );
+      };
       $('<span>',{
         id: "receive_balloon",
         text: data["content"],

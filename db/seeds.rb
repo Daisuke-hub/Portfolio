@@ -97,13 +97,13 @@ CSV.foreach('db/user.csv', headers: true) do |row|
   )
 end
 
-# require "csv"
-# CSV.foreach('db/genre_relationship.csv', headers: true) do |row|
-#   Genre_relationship.create(
-#     user_id: row['user_id'],
-#     room_id: row['room_id'],
-#   )
-# end
+require "csv"
+CSV.foreach('db/genre_relationship.csv', headers: true) do |row|
+  GenreRelationship.create(
+    user_id: row['user_id'],
+    genre_id: row['genre_id'],
+  )
+end
 
 
 
