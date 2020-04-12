@@ -26,6 +26,14 @@ SESSION
 ・作曲、作詞した作品を提供したい時。
 
 ## 設計書
+U/Iフロー、ワイヤーフレーム、ER図
+https://app.diagrams.net/#G1pJgBI_sD8EYROzCHv1ljuV4cgLWE-l4M
+
+テーブル定義書
+https://docs.google.com/spreadsheets/d/1ZyTij0vzebhZG2ZBO7Ur7rxznRStw1meGUprDvMBDuI/edit#gid=0
+
+詳細設計書
+https://docs.google.com/spreadsheets/d/1nBh7gkETvV8117JAgeD04kVSXAcAd8VQ1hxtoEZ_VrA/edit#gid=1510380875
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1W_9Lqwth1vJa_HnZDZ_TR5XuIm6dGmu6D2jASgRH88A/edit#gid=0

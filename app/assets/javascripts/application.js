@@ -16,23 +16,12 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-// history.pushState(null, null, location.href);
-// $(window).on("popstate", function () {
-// //   history.go(1);
-//   location.reload();
-// });
-
 $(function(){
     history.pushState(null, null, null);
     $(window).on("popstate", function (event) {
       history.pushState(null, null, null);
     });
 });
-
-// history.pushState(null, null, null);
-// window.addEventListener('popstate', function(e) {
-//   history.pushState(null, null, null);
-// });
 
 // ページ上部に推移
 $(function() {
