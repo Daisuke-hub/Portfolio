@@ -154,7 +154,6 @@
                                                         <%= render partial:"layouts/follow", locals: {following: following} %>
                                                     </span>
                                                 </div>
-
                                                 <%= link_to user_path(following) do %>
                                                     <span class="intro">
                                                         <% if following.introduction == nil %>
@@ -173,8 +172,6 @@
                             <% end %>
                         </div>
                     <% end %>
-
-
 
                     <div class="float_window">
                         <span class="message_titile">プロフィール</span>
@@ -235,7 +232,6 @@
                                     <% end %>
                                 </td>
                             </tr>
-                                
                             <tr>
                                 <th class="title">自己紹介</th>
                                 <td>
@@ -265,7 +261,6 @@
                             <span id="follow_<%= following.id %>">
                                 <%= render partial:"layouts/follow", locals: {following: following} %>
                             </span>
-                            
                         <% end %>
                     </div>
                 </div>
