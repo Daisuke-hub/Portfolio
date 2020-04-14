@@ -41,51 +41,55 @@
                             </div>
 
                             <table class="table table-hover">
-                                <% @users.each do |user|%>
+                                <% @users.each do |following|%>
                                     <tr>
                                         <td class="col-xs-1">
-                                            <%= link_to user_path(user) do %>
-                                                <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                                            <% end %>
+                                            <%= attachment_image_tag(following, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
                                         </td>
                                         <td>
-                                            <%= link_to user_path(user) do %>
-                                                <div class="record">
-                                                    <span class="name"><%= user.name.truncate(8) %></span>
+                                            <div>
+                                                <%= link_to user_path(following) do %>
+                                                    <span class="name"><%= following.name.truncate(7) %></span>
                                                     <span class="info">
-                                                        <% if user.instrument == nil %>
+                                                        <% if following.instrument == nil %>
                                                             未登録
                                                         <% else %>
-                                                            <%= user.instrument %>
+                                                            <%= following.instrument %>
                                                         <% end %>
                                                     </span>
                                                     <span class="info">
-                                                        <% if user.region == nil %>
+                                                        <% if following.region == nil %>
                                                             未登録
                                                         <% else %>
-                                                            <%= user.region %>
+                                                            <%= following.region %>
                                                         <% end %>
                                                     </span>
                                                     <span class="info">
-                                                        <% if user.region == nil %>
+                                                        <% if following.region == nil %>
                                                             未登録
                                                         <% else %>
-                                                            Level.<%= user.level %>
+                                                            Level.<%= following.level %>
                                                         <% end %>
                                                     </span>
 
                                                     <% limit = 0 %>
-                                                    <% user.genres. each do |genre| %>
+                                                    <% following.genres. each do |genre| %>
                                                         <% break if limit == 3 %>
                                                         <% limit += 1 %>
                                                         <span class="genre_icon"><%= genre.genre_name %></span>
                                                     <% end %>
-                                                </div>
+                                                <% end %>
+                                                <span id="follow_<%= following.id %>">
+                                                    <%= render partial:"layouts/follow", locals: {following: following} %>
+                                                </span>
+                                            </div>
+
+                                            <%= link_to user_path(following) do %>
                                                 <span class="intro">
-                                                    <% if user.introduction == nil %>
-                                                        <%= user.introduction %>
+                                                    <% if following.introduction == nil %>
+                                                        <%= following.introduction %>
                                                     <% else %>
-                                                        <%= user.introduction.truncate(88) %>
+                                                        <%= following.introduction.truncate(88) %>
                                                     <% end %>
                                                 </span>
                                             <% end %>

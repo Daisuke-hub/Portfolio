@@ -1,0 +1,68 @@
+<div class="room_back_image">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="index_white_back">
+                    <span class="chat_title"><%= current_user.name %>さんのお気に入り一覧</span>
+                    <table class="table table-hover">
+                        <% @followings.each do |following| %>
+                            <tr>
+                                <td class="col-xs-1">
+                                    <%= attachment_image_tag(following, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                                </td>
+                                <td>
+                                    <div>
+                                        <%= link_to user_path(following) do %>
+                                            <span class="name"><%= following.name.truncate(7) %></span>
+                                            <span class="info">
+                                                <% if following.instrument == nil %>
+                                                    未登録
+                                                <% else %>
+                                                    <%= following.instrument %>
+                                                <% end %>
+                                            </span>
+                                            <span class="info">
+                                                <% if following.region == nil %>
+                                                    未登録
+                                                <% else %>
+                                                    <%= following.region %>
+                                                <% end %>
+                                            </span>
+                                            <span class="info">
+                                                <% if following.region == nil %>
+                                                    未登録
+                                                <% else %>
+                                                    Level.<%= following.level %>
+                                                <% end %>
+                                            </span>
+
+                                            <% limit = 0 %>
+                                            <% following.genres. each do |genre| %>
+                                                <% break if limit == 3 %>
+                                                <% limit += 1 %>
+                                                <span class="genre_icon"><%= genre.genre_name %></span>
+                                            <% end %>
+                                        <% end %>
+                                        <span id="follow_<%= following.id %>">
+                                            <%= render partial:"layouts/follow", locals: {following: following} %>
+                                        </span>
+                                    </div>
+
+                                    <%= link_to user_path(following) do %>
+                                        <span class="intro">
+                                            <% if following.introduction == nil %>
+                                                <%= following.introduction %>
+                                            <% else %>
+                                                <%= following.introduction.truncate(88) %>
+                                            <% end %>
+                                        </span>
+                                    <% end %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
