@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
-    <% if current_user != following %>
-        <% if following.followed_by?(current_user) %>
-            <%= link_to user_user_relationships_path(following), method: :delete, remote: true do %>
-                <span class="glyphicon glyphicon-heart follow_icon" aria-hidden="true"></span>
-            <% end %>
-        <% else %>
-            <%= link_to user_user_relationships_path(following), method: :post, remote: true do %>
-                <span class="glyphicon glyphicon-heart-empty follow_icon" aria-hidden="true"></span>
-            <% end %>
-        <% end %>
+  <% if current_user != following %>
+    <% if following.followed_by?(current_user) %>
+      <%= link_to user_user_relationships_path(following), method: :delete, remote: true do %>
+        <span class="glyphicon glyphicon-heart follow_icon" aria-hidden="true"></span>
+      <% end %>
+    <% else %>
+      <%= link_to user_user_relationships_path(following), method: :post, remote: true do %>
+        <span class="glyphicon glyphicon-heart-empty follow_icon" aria-hidden="true"></span>
+      <% end %>
     <% end %>
+  <% end %>
 <% end %>

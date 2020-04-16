@@ -1,108 +1,108 @@
 <div class="room_back_image">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-                <div class="index_white_back">
-                    <span class="chat_title"><%= current_user.name %>さんのチャットルーム一覧</span>
-                    <table class="table table-hover">
-                        <% if @user_messages.empty? == false %>
-                            <tr>
-                                <% room = @new_message.room %>
-                                <% if room.host_id == current_user.id %>
-                                    <% user = User.with_deleted.where(id: room.member_id).first %>
-                                    <td class="col-xs-1">
-                                        <%= link_to room_path(room) do %>
-                                            <% if user.deleted_at == nil %>
-                                                <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                                            <% else %>
-                                                <%= image_tag"no_image.jpg", id:"message_image" %>
-                                            <% end %>
-                                        <% end %>
-                                    </td>
-                                    <td>
-                                        <%= link_to room_path(room) do %>
-                                            <span class="room_name"><%= user.name %></span>
-                                        <% end %>
-                                    </td>
-                                <% else %>
-                                    <% user = User.with_deleted.where(id: room.host_id).first %>
-                                    <td class="col-xs-1">
-                                        <%= link_to room_path(room) do %>
-                                            <% if user.deleted_at == nil %>
-                                                <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                                            <% else %>
-                                                <%= image_tag"no_image.jpg", id:"message_image" %>
-                                            <% end %>
-                                        <% end %>
-                                    </td>
-                                    <td>
-                                        <%= link_to room_path(room) do %>
-                                            <span class="room_name"><%= user.name %></span>
-                                        <% end %>
-                                    </td>
-                                <% end %>
-                                <td>
-                                    <%= link_to room_path(room) do %>
-                                        <div class="time"><%= @new_message.created_at.strftime('%m/%d %H:%M') %></div>
-                                        <div class="new_message"><%= @new_message.content.truncate(20) %></div>
-                                    <% end %>
-                                </td>
-                            </tr>
-                            <% room_id = @new_message.room_id %>
-                            <% old_message = @user_messages.where.not(room_id: room_id) %>
-                            <% message = old_message.order(created_at: :desc).first %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="index_white_back">
+          <span class="chat_title"><%= current_user.name %>さんのチャットルーム一覧</span>
+          <table class="table table-hover">
+            <% if @user_messages.empty? == false %>
+              <tr>
+                <% room = @new_message.room %>
+                <% if room.host_id == current_user.id %>
+                  <% user = User.with_deleted.where(id: room.member_id).first %>
+                  <td class="col-xs-1">
+                    <%= link_to room_path(room) do %>
+                      <% if user.deleted_at == nil %>
+                        <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                      <% else %>
+                        <%= image_tag"no_image.jpg", id:"message_image" %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to room_path(room) do %>
+                      <span class="room_name"><%= user.name %></span>
+                    <% end %>
+                  </td>
+                <% else %>
+                  <% user = User.with_deleted.where(id: room.host_id).first %>
+                  <td class="col-xs-1">
+                    <%= link_to room_path(room) do %>
+                      <% if user.deleted_at == nil %>
+                        <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                      <% else %>
+                        <%= image_tag"no_image.jpg", id:"message_image" %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to room_path(room) do %>
+                      <span class="room_name"><%= user.name %></span>
+                    <% end %>
+                  </td>
+                <% end %>
+                <td>
+                  <%= link_to room_path(room) do %>
+                    <div class="time"><%= @new_message.created_at.strftime('%m/%d %H:%M') %></div>
+                    <div class="new_message"><%= @new_message.content.truncate(20) %></div>
+                  <% end %>
+                </td>
+              </tr>
+              <% room_id = @new_message.room_id %>
+              <% old_message = @user_messages.where.not(room_id: room_id) %>
+              <% message = old_message.order(created_at: :desc).first %>
 
-                            <% while old_message.count > 0 %>
-                                <tr>
-                                    <% room = message.room %>
-                                    <% if room.host_id == current_user.id %>
-                                        <% user = User.with_deleted.where(id: room.member_id).first %>
-                                        <td class="col-xs-1">
-                                            <%= link_to room_path(room) do %>
-                                                <% if user.deleted_at == nil %>
-                                                    <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                                                <% else %>
-                                                    <%= image_tag"no_image.jpg", id:"message_image" %>
-                                                <% end %>
-                                            <% end %>
-                                        </td>
-                                        <td>
-                                            <%= link_to room_path(room) do %>
-                                                <span class="room_name"><%= user.name %></span>
-                                            <% end %>
-                                        </td>
-                                    <% else %>
-                                        <% user = User.with_deleted.where(id: room.host_id).first %>
-                                        <td class="col-xs-1">
-                                            <%= link_to room_path(room) do %>
-                                                <% if user.deleted_at == nil %>
-                                                    <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-                                                <% else %>
-                                                    <%= image_tag"no_image.jpg", id:"message_image" %>
-                                                <% end %>
-                                            <% end %>
-                                        </td>
-                                        <td>
-                                            <%= link_to room_path(room) do %>
-                                                <span class="room_name"><%= user.name %></span>
-                                            <% end %>
-                                        </td>
-                                    <% end %>
-                                    <td>
-                                        <%= link_to room_path(room) do %>
-                                            <div class="time"><%= message.created_at.strftime('%m/%d %H:%M') %></div>
-                                            <div class="new_message"><%= message.content.truncate(20) %></div>
-                                        <% end %>
-                                    </td>
-                                </tr>
-                                <% room_id = message.room_id %>
-                                <% old_message = old_message.where.not(room_id: room_id) %>
-                                <% message = old_message.order(created_at: :desc).first %>
-                            <% end %>
+              <% while old_message.count > 0 %>
+                <tr>
+                  <% room = message.room %>
+                  <% if room.host_id == current_user.id %>
+                    <% user = User.with_deleted.where(id: room.member_id).first %>
+                    <td class="col-xs-1">
+                      <%= link_to room_path(room) do %>
+                        <% if user.deleted_at == nil %>
+                          <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                        <% else %>
+                          <%= image_tag"no_image.jpg", id:"message_image" %>
                         <% end %>
-                    </table>
-                </div>
-            </div>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to room_path(room) do %>
+                        <span class="room_name"><%= user.name %></span>
+                      <% end %>
+                    </td>
+                  <% else %>
+                    <% user = User.with_deleted.where(id: room.host_id).first %>
+                    <td class="col-xs-1">
+                      <%= link_to room_path(room) do %>
+                        <% if user.deleted_at == nil %>
+                          <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+                        <% else %>
+                          <%= image_tag"no_image.jpg", id:"message_image" %>
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to room_path(room) do %>
+                        <span class="room_name"><%= user.name %></span>
+                      <% end %>
+                    </td>
+                  <% end %>
+                  <td>
+                    <%= link_to room_path(room) do %>
+                      <div class="time"><%= message.created_at.strftime('%m/%d %H:%M') %></div>
+                      <div class="new_message"><%= message.content.truncate(20) %></div>
+                    <% end %>
+                  </td>
+                </tr>
+                <% room_id = message.room_id %>
+                <% old_message = old_message.where.not(room_id: room_id) %>
+                <% message = old_message.order(created_at: :desc).first %>
+              <% end %>
+            <% end %>
+          </table>
         </div>
+      </div>
     </div>
+  </div>
 </div>

@@ -1,81 +1,81 @@
 <div id="page_count_move">
-    <span class="page_count">
-        <% if @users.count == 0 %>0 〜
-        <% else %>
-            <%= @users.current_page * @per - @per + 1 %>〜
-        <% end %>
-        <%= @users.current_page * @per - @per + @users.count %>件目を表示 / 全
-        <%= @users_all.count %>件
-    </span>
+  <span class="page_count">
+    <% if @users.count == 0 %>0 〜
+    <% else %>
+      <%= @users.current_page * @per - @per + 1 %>〜
+    <% end %>
+    <%= @users.current_page * @per - @per + @users.count %>件目を表示 / 全
+    <%= @users_all.count %>件
+  </span>
 </div>
 
 <table class="table table-hover">
-    <% @users.each do |user|%>
-        <tr>
-            <td class="col-xs-1">
-                <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
-            </td>
-            <td>
-                <div>
-                    <%= link_to user_path(user) do %>
-                        <span class="name"><%= user.name.truncate(7) %></span>
-                        <span class="info">
-                            <% if user.instrument == nil %>
-                                未登録
-                            <% else %>
-                                <%= user.instrument %>
-                            <% end %>
-                        </span>
-                        <span class="info">
-                            <% if user.region == nil %>
-                                未登録
-                            <% else %>
-                                <%= user.region %>
-                            <% end %>
-                        </span>
-                        <span class="info">
-                            <% if user.region == nil %>
-                                未登録
-                            <% else %>
-                                Level.<%= user.level %>
-                            <% end %>
-                        </span>
+  <% @users.each do |user|%>
+    <tr>
+      <td class="col-xs-1">
+        <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50") %>
+      </td>
+      <td>
+        <div>
+          <%= link_to user_path(user) do %>
+            <span class="name"><%= user.name.truncate(7) %></span>
+            <span class="info">
+              <% if user.instrument == nil %>
+                未登録
+              <% else %>
+                <%= user.instrument %>
+              <% end %>
+            </span>
+            <span class="info">
+              <% if user.region == nil %>
+                未登録
+              <% else %>
+                <%= user.region %>
+              <% end %>
+            </span>
+            <span class="info">
+              <% if user.region == nil %>
+                未登録
+              <% else %>
+                Level.<%= user.level %>
+              <% end %>
+            </span>
 
-                        <% limit = 0 %>
-                        <% user.genres. each do |genre| %>
-                            <% break if limit == 3 %>
-                            <% limit += 1 %>
-                            <span class="genre_icon"><%= genre.genre_name %></span>
-                        <% end %>
-                    <% end %>
-                    <% following = user %>
-                    <span id="follow_<%= following.id %>">
-                        <%= render partial:"layouts/follow", locals: {following: following} %>
-                    </span>
-                </div>
+            <% limit = 0 %>
+            <% user.genres. each do |genre| %>
+              <% break if limit == 3 %>
+              <% limit += 1 %>
+              <span class="genre_icon"><%= genre.genre_name %></span>
+            <% end %>
+          <% end %>
+          <% following = user %>
+          <span id="follow_<%= following.id %>">
+            <%= render partial:"layouts/follow", locals: {following: following} %>
+          </span>
+        </div>
 
-                <%= link_to user_path(user) do %>
-                    <span class="intro">
-                        <% if user.introduction == nil %>
-                            <%= user.introduction %>
-                        <% else %>
-                            <%= user.introduction.truncate(88) %>
-                        <% end %>
-                    </span>
-                <% end %>
-            </td>
-        </tr>
-    <% end %>
+        <%= link_to user_path(user) do %>
+          <span class="intro">
+            <% if user.introduction == nil %>
+              <%= user.introduction %>
+            <% else %>
+              <%= user.introduction.truncate(88) %>
+            <% end %>
+          </span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 
 <div class="page_count">
-    <%if @users.count >= 9 %>
-        <% if @users.count == 0 %>0 〜
-        <% else %>
-            <%= @users.current_page * @per - @per + 1 %>〜
-        <% end %>
-        <%= @users.current_page * @per - @per + @users.count %>件目を表示 / 全
-        <%= @users_all.count %>件
+  <%if @users.count >= 9 %>
+    <% if @users.count == 0 %>0 〜
+    <% else %>
+      <%= @users.current_page * @per - @per + 1 %>〜
     <% end %>
+    <%= @users.current_page * @per - @per + @users.count %>件目を表示 / 全
+    <%= @users_all.count %>件
+  <% end %>
 </div>
 <%= paginate @users %>
