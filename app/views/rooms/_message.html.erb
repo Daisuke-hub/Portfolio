@@ -1,28 +1,28 @@
 <ul>
-    <% @messages.each do |message| %>
-        <% if message.user_id == current_user.id %>
-            <li class="right">
-                <span class="created_time">
-                    <%= message.created_at.strftime('%m/%d %H:%M') %>
-                </span>
-                <span class="balloon_right">
-                    <%= message.content %>
-                </span>
-            </li>
-        <% else%>
-            <li class="left">
-                <span class="image">
-                    <%= attachment_image_tag(message.user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50")%>
-                </span>
-                <span class="balloon">
-                    <%= message.content %>
-                </span>
-                <span class="created_time">
-                    <%= message.created_at.strftime('%m/%d %H:%M') %>
-                </span>
-            </li>
-        <% end %>
+  <% @messages.each do |message| %>
+    <% if message.user_id == current_user.id %>
+      <li class="right">
+        <span class="created_time">
+          <%= message.created_at.strftime('%m/%d %H:%M') %>
+        </span>
+        <span class="balloon_right">
+          <%= message.content %>
+        </span>
+      </li>
+    <% else%>
+      <li class="left">
+        <span class="image">
+          <%= attachment_image_tag(message.user, :user_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50")%>
+        </span>
+        <span class="balloon">
+          <%= message.content %>
+        </span>
+        <span class="created_time">
+          <%= message.created_at.strftime('%m/%d %H:%M') %>
+        </span>
+      </li>
     <% end %>
+  <% end %>
 </ul>
 
 <ul id="add"></ul>

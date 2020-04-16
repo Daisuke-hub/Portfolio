@@ -2,12 +2,12 @@
 // All this logic will automatically be available in application.js.
 
 $(function() {
-    $('#about_move').on('click',function(){
-        $('body, html').animate({
-        scrollTop:600
-        }, 600);
-        return false;
-    });
+  $('#about_move').on('click',function(){
+    $('body, html').animate({
+      scrollTop:600
+    }, 600);
+    return false;
+  });
 });
 
 // $(function(){
