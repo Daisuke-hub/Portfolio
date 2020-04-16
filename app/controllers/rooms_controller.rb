@@ -3,17 +3,17 @@ class RoomsController < ApplicationController
   before_action :baria_room, only: [:show]
 
   def create
-    check_host = Room.where(host_id: current_user.id, member_id: params[:id]).exists?
-    check_member = Room.where(host_id: params[:id], member_id: current_user.id).exists?
+    check_host = Room.where(host_id: current_user.id, member_id: params[:user_id]).exists?
+    check_member = Room.where(host_id: params[:user_id], member_id: current_user.id).exists?
     if check_host || check_member == true
-      if Room.where(host_id: current_user.id, member_id: params[:id]).exists? == false
-        room = Room.where(host_id: params[:id], member_id: current_user.id).first
+      if Room.where(host_id: current_user.id, member_id: params[:user_id]).exists? == false
+        room = Room.where(host_id: params[:user_id], member_id: current_user.id).first
       else
-        room = Room.where(host_id: current_user.id, member_id: params[:id]).first
+        room = Room.where(host_id: current_user.id, member_id: params[:user_id]).first
       end
     else
-      room = Room.new(host_id: current_user.id, member_id: params[:id])
-      room.save     
+      room = Room.new(host_id: current_user.id, member_id: params[:user_id])
+      room.save
     end
     redirect_to room_path(room)
   end
