@@ -144,7 +144,7 @@
                           </span>
 
                           <% limit = 2 %>
-                            <% user.genres. each do |genre| %>
+                            <% following.genres. each do |genre| %>
                               <% break if limit == 0 %>
                               <% limit -= 1 %>
                               <span class="genre_icon"><%= genre.genre_name %></span>
