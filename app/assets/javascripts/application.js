@@ -39,7 +39,7 @@ $(function(){
     if (!('Notification' in window)) {
         alert('お使いのブラウザは通知機能非対応です');
       }else{
-        alert("ブラウザの通知設定を有効にすることで、チャットメッセージを受信した時に、プッシュ通知を受け取ることができます。(ブラウザによっては通知を受け取れない場合があります。)");
+        alert("ブラウザの通知設定を有効にすることで、\nチャットメッセージを受信した時に、\nプッシュ通知を受け取ることができます。\n\n(ブラウザによっては通知を受け取れない場合があります。)");
         Notification.requestPermission()
         .then((permission) => {
         if (permission == 'granted') {

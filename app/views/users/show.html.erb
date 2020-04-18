@@ -143,13 +143,17 @@
                             <% end %>
                           </span>
 
-                          <% limit = 0 %>
-                          <% following.genres. each do |genre| %>
-                            <% break if limit == 2 %>
-                            <% limit += 1 %>
-                            <span class="genre_icon"><%= genre.genre_name %></span>
+                          <% limit = 2 %>
+                            <% user.genres. each do |genre| %>
+                              <% break if limit == 0 %>
+                              <% limit -= 1 %>
+                              <span class="genre_icon"><%= genre.genre_name %></span>
+                            <% end %>
+                            <% limit.times do %>
+                              <span class="genre_icon">未登録</span>
+                            <% end %>
                           <% end %>
-                        <% end %>
+                        
                         <span id="follow_<%= following.id %>">
                           <%= render partial:"layouts/follow", locals: {following: following} %>
                         </span>

@@ -40,14 +40,17 @@
                 Level.<%= user.level %>
               <% end %>
             </span>
-
-            <% limit = 0 %>
+            <% limit = 3 %>
             <% user.genres. each do |genre| %>
-              <% break if limit == 3 %>
-              <% limit += 1 %>
+              <% break if limit == 0 %>
+              <% limit -= 1 %>
               <span class="genre_icon"><%= genre.genre_name %></span>
             <% end %>
+            <% limit.times do %>
+              <span class="genre_icon">未登録</span>
+            <% end %>
           <% end %>
+
           <% following = user %>
           <span id="follow_<%= following.id %>">
             <%= render partial:"layouts/follow", locals: {following: following} %>
