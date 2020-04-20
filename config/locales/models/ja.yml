@@ -12,7 +12,7 @@ ja:
         password_confirmation: パスワード(確認用)
   errors:
     messages:
-      inclusion: "は正数のみ有効です"
+      inclusion: "は18才から有効です"
       not_saved:
         one: "入力内容が不適切です:"
         other: "入力内容が不適切です:"

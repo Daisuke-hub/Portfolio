@@ -20,21 +20,21 @@
           <%= link_to user_path(user) do %>
             <span class="name"><%= user.name.truncate(7) %></span>
             <span class="info">
-              <% if user.instrument == nil %>
+              <% if user.instrument.blank? %>
                 未登録
               <% else %>
                 <%= user.instrument %>
               <% end %>
             </span>
             <span class="info">
-              <% if user.region == nil %>
+              <% if user.instrument.blank? %>
                 未登録
               <% else %>
                 <%= user.region %>
               <% end %>
             </span>
             <span class="info">
-              <% if user.region == nil %>
+              <% if user.instrument.blank? %>
                 未登録
               <% else %>
                 Level.<%= user.level %>

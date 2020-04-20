@@ -41,7 +41,7 @@
                   <tr>
                     <th class="title">性別</th>
                     <td class="field">
-                      <%= f.select :sex, ["男性","女性"] %>
+                      <%= f.select :sex, ["男性","女性"], {include_blank: true} %>
                     </td>
                   </tr>
 
@@ -55,21 +55,21 @@
                   <tr>
                     <th class="title">担当楽器</th>
                     <td class="field">
-                      <%= f.select :instrument, ["ギター","ベース","ドラム","ボーカル","キーボード","作詞担当","作曲担当","その他"] %>
+                      <%= f.select :instrument, ["ギター","ベース","ドラム","ボーカル","キーボード","作詞担当","作曲担当","その他"], {include_blank: true} %>
                     </td>
                   </tr>
 
                   <tr>
                     <th class="title">自己評価点</th>
                     <td class="field">
-                      <%= f.select :level, [["1 (初心者)","1"],["2 (簡単な曲なら弾ける)","2"],["3 (簡単な曲なら耳コピができる)","3"],["4 (簡単なセッションができる)","4"],["5 (セッションができる)","5"]] %>
+                      <%= f.select :level, [["1 (初心者)","1"],["2 (簡単な曲なら弾ける)","2"],["3 (簡単な曲なら耳コピができる)","3"],["4 (簡単なセッションができる)","4"],["5 (セッションができる)","5"]], {include_blank: true} %>
                     </td>
                   </tr>
 
                   <tr>
                     <th class="title">活動地域</th>
                     <td class="field">
-                      <%= f.grouped_collection_select(:region, Region.all, :prefectures, :region_name, :prefecture_name, :prefecture_name) %>
+                      <%= f.grouped_collection_select(:region, Region.all, :prefectures, :region_name, :prefecture_name, :prefecture_name, include_blank: true) %>
                     </td>
                   </tr>
 
