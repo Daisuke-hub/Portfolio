@@ -1,10 +1,4 @@
 App.room = App.cable.subscriptions.create("RoomChannel", {
-  // received_user: function() {
-  //   var received_user = $("#user_id").val();
-  //   console.log("received_user");
-  //   console.log(received_user);
-  //   return received_user;
-  // },
 
   notification: function(message){
     var title = 'SESSIONから新規のメッセージがあります';

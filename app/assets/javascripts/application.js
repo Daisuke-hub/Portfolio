@@ -17,24 +17,21 @@
 //= require_tree .
 
 $(function(){
+  // ブラウザバックの禁止
   history.pushState(null, null, null);
   $(window).on("popstate", function (event) {
     history.pushState(null, null, null);
   });
-});
 
-// ページ上部に推移
-$(function() {
+  // ページ上部に推移
   $('#page_top, #about_botton').on('click',function(){
     $('body, html').animate({
       scrollTop:0
     }, 600);
     return false;
   });
-});
 
-// プッシュ通知の許可申請
-$(function(){
+  // プッシュ通知の許可申請
   $('#push').on('click',function(){
     if (!('Notification' in window)) {
         alert('お使いのブラウザは通知機能非対応です');

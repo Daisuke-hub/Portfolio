@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
     check_host = Room.where(host_id: current_user.id, member_id: params[:user_id]).exists?
     check_member = Room.where(host_id: params[:user_id], member_id: current_user.id).exists?
     if check_host || check_member == true
-      if Room.where(host_id: current_user.id, member_id: params[:user_id]).exists? == false
+      if !check_host
         room = Room.where(host_id: params[:user_id], member_id: current_user.id).first
       else
         room = Room.where(host_id: current_user.id, member_id: params[:user_id]).first

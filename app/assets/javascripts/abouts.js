@@ -9,21 +9,3 @@ $(function() {
     return false;
   });
 });
-
-// $(function(){
-//     $("#top_back").animate({
-//         "opacity": 0
-//     }).setTimeout(function(){
-//         this.animate({
-//             "opacity": "1"
-//         });
-//     },1000);
-// });
-
-// $(function() {
-//     $(".about_head").on("click",function(){
-//         $(".about_head, .about_body").animate({
-//             "opacity": 0
-//         });
-//     });
-// });
