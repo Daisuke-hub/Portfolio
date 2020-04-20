@@ -12,9 +12,7 @@ $(function(){
     }
     fileReader.readAsDataURL(selectedFile);
   });
-});
 
-$(function(){
   $("#page_count_move").animate({
     "paddingTop": "10px"
   }).animate({
