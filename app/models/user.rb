@@ -27,37 +27,37 @@ class User < ApplicationRecord
 
   # バンドマン検索
   def self.search(instrument,sex,age_st,age_ed,region,level,introduction)
-    if instrument.blank? == true
+    if instrument.blank?
       search_instrument = User.all
     else
-      search_instrument = User.where("instrument LIKE ?","#{instrument}")
+      search_instrument = User.where(instrument: "#{instrument}")
     end
 
-    if sex.blank? == true
+    if sex.blank?
       search_sex = search_instrument.all
     else
-      search_sex = search_instrument.where("sex LIKE ?","#{sex}")
+      search_sex = search_instrument.where(sex: "#{sex}")
     end
 
-    if region.blank? == true
+    if region.blank?
       search_region = search_sex.all
     else
-      search_region = search_sex.where("region LIKE ?","#{region}")
+      search_region = search_sex.where(region: "#{region}")
     end
 
-    if level.blank? == true
+    if level.blank?
       search_level = search_region.all
     else
-      search_level = search_region.where("level LIKE ?","#{level}")
+      search_level = search_region.where(level: "#{level}")
     end
 
-    if introduction.blank? == true
+    if introduction.blank?
       search_introduction = search_level.all
     else
       search_introduction = search_level.where("introduction LIKE ?","%#{introduction}%")
     end
 
-    if age_st.blank? == true || age_ed.blank?
+    if age_st.blank? || age_ed.blank?
       search_age = search_introduction.all
     else
       search_age = search_introduction.where(age: age_st..age_ed)
