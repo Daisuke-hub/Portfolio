@@ -7,9 +7,17 @@
           <% if @user == current_user %>
             <div class="float_window">
               <span class="message_titile">最近の投稿</span>
-              <span class="today_messages">(本日は<%= @count_all %>件の投稿があります)</span>
+              <span class="small_text">(本日は<%= @count_all %>件の投稿があります)</span>
               <table class="table table-hover">
-                <% if @new_message.nil? == false %>
+                <% if @new_message.nil? %>
+                  <tr>
+                    <td class="small_text">
+                      <%= link_to users_path do %>
+                        <span>バンドマンを検索して、チャットをしてみましょう！</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% else%>
                   <tr>
                     <% room = @new_message.room %>
                     <% if room.host_id == current_user.id %>
@@ -116,6 +124,16 @@
             <div class="float_window">
               <span class="message_titile">お気に入り</span>
               <table class="table table-hover">
+                <% if current_user.followings.blank? %>
+                  <tr>
+                    <td class="small_text">
+                      <%= link_to users_path do %>
+                        <span class="glyphicon glyphicon-heart-empty follow_icon" aria-hidden="true"></span>
+                        <span>をクリックして、気になるバンドマンをお気に入りに登録してみましょう！</span>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
                 <% following_count = 0 %>
                 <% current_user.followings.each do |following| %>
                   <% break if following_count == 3 %>
@@ -136,7 +154,7 @@
                             <% end %>
                           </span>
                           <span class="info">
-                            <% if following.instrument.blank? %>
+                            <% if following.level.blank? %>
                               未登録
                             <% else %>
                               Level.<%= following.level %>
@@ -160,9 +178,7 @@
                       </div>
                       <%= link_to user_path(following) do %>
                         <span class="intro">
-                          <% if following.introduction == nil %>
-                            <%= following.introduction %>
-                          <% else %>
+                          <% if !following.introduction.blank? %>
                             <%= following.introduction.truncate(88) %>
                           <% end %>
                         </span>

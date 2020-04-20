@@ -27,14 +27,14 @@
               <% end %>
             </span>
             <span class="info">
-              <% if user.instrument.blank? %>
+              <% if user.region.blank? %>
                 未登録
               <% else %>
                 <%= user.region %>
               <% end %>
             </span>
             <span class="info">
-              <% if user.instrument.blank? %>
+              <% if user.level.blank? %>
                 未登録
               <% else %>
                 Level.<%= user.level %>

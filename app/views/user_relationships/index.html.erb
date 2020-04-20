@@ -22,14 +22,14 @@
                         <% end %>
                       </span>
                       <span class="info">
-                        <% if following.instrument.blank? %>
+                        <% if following.region.blank? %>
                           未登録
                         <% else %>
                           <%= following.region %>
                         <% end %>
                       </span>
                       <span class="info">
-                        <% if following.instrument.blank? %>
+                        <% if following.level.blank? %>
                           未登録
                         <% else %>
                           Level.<%= following.level %>
