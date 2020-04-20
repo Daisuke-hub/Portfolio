@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if @users_all.count == 0
       @users_all = users_search
     end
-    @per = 20.to_i
+    @per = 20
     @users = @users_all.page(params[:page]).per(@per)
   end
 
