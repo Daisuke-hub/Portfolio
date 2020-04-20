@@ -15,21 +15,21 @@
                     <%= link_to user_path(following) do %>
                       <span class="name"><%= following.name.truncate(7) %></span>
                       <span class="info">
-                        <% if following.instrument == nil %>
+                        <% if following.instrument.blank? %>
                           未登録
                         <% else %>
                           <%= following.instrument %>
                         <% end %>
                       </span>
                       <span class="info">
-                        <% if following.region == nil %>
+                        <% if following.instrument.blank? %>
                           未登録
                         <% else %>
                           <%= following.region %>
                         <% end %>
                       </span>
                       <span class="info">
-                        <% if following.region == nil %>
+                        <% if following.instrument.blank? %>
                           未登録
                         <% else %>
                           Level.<%= following.level %>
