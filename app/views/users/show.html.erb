@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-xs-8 col-xs-offset-2">
         <div class="back_white">
-          <div id="notice"><%= notice %></div>
           <% if @user == current_user %>
+            <div class="notice"><%= notice %></div>
             <div class="float_window">
               <span class="message_titile">最近の投稿</span>
               <span class="small_text">(本日は<%= @count_all %>件の投稿があります)</span>

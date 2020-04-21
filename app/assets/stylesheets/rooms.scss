@@ -15,12 +15,10 @@
 
 .message_input{
     text-align: center;
-    // position: fixed;
     bottom: 0;
     width: 100%;
     height: 80px;
     margin-left: 0 auto;
-    // background-color: black;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -29,7 +27,6 @@
     height: 40px;
     border-radius: 10px;
     padding-left: 5px;
-    // box-shadow: 0px  0px 8px black;
 }
 
 .button{
@@ -40,7 +37,6 @@
     border-color: #2e6da4;
     border-radius: 5px;
     color: white;
-    // box-shadow: 0px  0px 8px black;
 }
 
 .message_input_back{
@@ -60,7 +56,6 @@
 
 
 .right{
-    // margin-right: 20px;
     text-align: right;
 }
 
@@ -88,7 +83,6 @@
     margin-bottom: 20px;
     font-weight: 500;
     font-size: 15px;
-    // color: #337ab7;
 }
 
 .receive_user_name{
