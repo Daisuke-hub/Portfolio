@@ -172,7 +172,7 @@ ul{
 
 .float_window{
     width: 100%;
-    margin-bottom: 20px;
+    margin: 20px 0;
     padding:20px 40px 20px 40px;
     background-color:white;
     box-shadow: 0px  0px 8px black;
@@ -234,4 +234,14 @@ a:hover{
 
 .follow_icon:hover{
     color: rgb(250, 148, 250);
+}
+
+.notice{
+  // color: #5bc0de;
+  color: white;
+  text-align: center;
+  font-size: 17px;
+  background-color: green;
+  border-radius: 10px;
+  border: gray;
 }
