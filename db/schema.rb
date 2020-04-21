@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_123045) do
     t.datetime "deleted_at"
     t.index ["age"], name: "index_users_on_age"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email"
     t.index ["instrument"], name: "index_users_on_instrument"
     t.index ["level"], name: "index_users_on_level"
     t.index ["region"], name: "index_users_on_region"
