@@ -67,7 +67,6 @@ gem 'kaminari','~> 1.1.1'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
-gem 'ransack'
 gem 'rails-i18n'
 gem 'paranoia'
 
